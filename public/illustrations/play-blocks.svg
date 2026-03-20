@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <!-- Background -->
+  <circle cx="120" cy="120" r="110" fill="#FFF0E6"/>
+
+  <!-- Shadow -->
+  <ellipse cx="120" cy="188" rx="65" ry="10" fill="#EAD9CC" opacity="0.5"/>
+
+  <!-- Block bottom-left (orange) -->
+  <rect x="52" y="140" width="60" height="44" rx="10" fill="#E07B39"/>
+  <rect x="52" y="140" width="60" height="14" rx="8" fill="#C4622A" opacity="0.5"/>
+  <!-- Star on orange block -->
+  <path d="M82 153 L83.5 158 L88.5 158 L84.5 161 L86 166 L82 163.5 L78 166 L79.5 161 L75.5 158 L80.5 158Z" fill="#FFF0E6" opacity="0.8"/>
+
+  <!-- Block bottom-right (lavender) -->
+  <rect x="126" y="148" width="56" height="36" rx="10" fill="#9B8EC4"/>
+  <rect x="126" y="148" width="56" height="12" rx="8" fill="#7A6AA0" opacity="0.4"/>
+  <!-- Circle on lavender block -->
+  <circle cx="154" cy="166" r="10" fill="#FFF0E6" opacity="0.7"/>
+
+  <!-- Block middle (sage/green) -->
+  <rect x="76" y="96" width="54" height="48" rx="10" fill="#7DB87A"/>
+  <rect x="76" y="96" width="54" height="14" rx="8" fill="#5A9658" opacity="0.4"/>
+  <!-- Triangle on green block -->
+  <path d="M103 108 L115 126 L91 126Z" fill="#FFF0E6" opacity="0.7"/>
+
+  <!-- Block top (rose/pink) -->
+  <rect x="90" y="56" width="50" height="44" rx="10" fill="#E8847A"/>
+  <rect x="90" y="56" width="50" height="14" rx="8" fill="#C45C52" opacity="0.4"/>
+  <!-- Heart on top block -->
+  <path d="M115 68 C115 65 112 63 110 65 C108 63 105 65 105 68 C105 72 110 76 115 79 C120 76 125 72 125 68 C125 65 122 63 120 65 C118 63 115 65 115 68Z" fill="#FFF0E6" opacity="0.7"/>
+
+  <!-- Decorative dots -->
+  <circle cx="46" cy="100" r="6" fill="#F5A623" opacity="0.5"/>
+  <circle cx="196" cy="115" r="7" fill="#6DB8D4" opacity="0.45"/>
+  <circle cx="48" cy="170" r="5" fill="#9B8EC4" opacity="0.4"/>
+  <circle cx="200" cy="168" r="5" fill="#4CAF82" opacity="0.4"/>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <!-- Background -->
+  <circle cx="120" cy="120" r="110" fill="#FFF0E6"/>
+
+  <!-- Large empty speech bubble -->
+  <path d="M32 64 Q32 36 56 36 L184 36 Q208 36 208 64 L208 140 Q208 168 184 168 L146 168 L120 204 L94 168 L56 168 Q32 168 32 140Z"
+    fill="white" stroke="#EAD9CC" stroke-width="3"/>
+
+  <!-- Three dots inside (ellipsis / waiting) -->
+  <circle cx="90" cy="102" r="12" fill="#EAD9CC" opacity="0.6"/>
+  <circle cx="120" cy="102" r="12" fill="#EAD9CC" opacity="0.45"/>
+  <circle cx="150" cy="102" r="12" fill="#EAD9CC" opacity="0.3"/>
+
+  <!-- Question mark suggestion -->
+  <path d="M112 96 Q112 88 120 86 Q128 84 130 90 Q132 96 124 100 L124 106" stroke="#B09080" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  <circle cx="124" cy="112" r="2.5" fill="#B09080"/>
+
+  <!-- Small decorative elements outside -->
+  <circle cx="38" cy="186" r="7" fill="#EAD9CC" opacity="0.5"/>
+  <circle cx="202" cy="188" r="6" fill="#EAD9CC" opacity="0.45"/>
+
+  <!-- Floating sparkles (faint, suggesting potential) -->
+  <path d="M44 56 L45 60 L49 60 L46 62.5 L47 66.5 L44 64.5 L41 66.5 L42 62.5 L39 60 L43 60Z" fill="#9B8EC4" opacity="0.3"/>
+  <path d="M196 52 L197.5 57 L202.5 57 L198.5 60 L200 65 L196 62.5 L192 65 L193.5 60 L189.5 57 L194.5 57Z" fill="#E8847A" opacity="0.3"/>
+  <circle cx="50" cy="132" r="5" fill="#F5A623" opacity="0.3"/>
+  <circle cx="190" cy="136" r="5" fill="#4CAF82" opacity="0.3"/>
+</svg>

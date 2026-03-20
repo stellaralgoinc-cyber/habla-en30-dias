@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <!-- Background -->
+  <circle cx="120" cy="120" r="110" fill="#FFF0E6"/>
+
+  <!-- Badge outer ring -->
+  <circle cx="120" cy="112" r="78" fill="#E8847A" opacity="0.12"/>
+  <circle cx="120" cy="112" r="78" stroke="#E8847A" stroke-width="3" opacity="0.35"/>
+
+  <!-- Badge inner circle -->
+  <circle cx="120" cy="112" r="62" fill="#E8847A"/>
+  <!-- Badge shine -->
+  <ellipse cx="104" cy="88" rx="18" ry="12" fill="white" opacity="0.2" transform="rotate(-30 104 88)"/>
+
+  <!-- Heart inside -->
+  <path d="M120 148
+    C120 148 82 124 82 98
+    C82 82 94 72 104 74
+    C110 75 116 80 120 86
+    C124 80 130 75 136 74
+    C146 72 158 82 158 98
+    C158 124 120 148 120 148Z"
+    fill="white" opacity="0.92"/>
+
+  <!-- Inner heart (smaller, accent) -->
+  <path d="M120 134
+    C120 134 98 120 98 106
+    C98 97 104 92 110 93
+    C114 94 117 97 120 101
+    C123 97 126 94 130 93
+    C136 92 142 97 142 106
+    C142 120 120 134 120 134Z"
+    fill="#E8847A" opacity="0.4"/>
+
+  <!-- Ribbon left -->
+  <path d="M76 172 Q90 160 104 172 L96 200 L76 188Z" fill="#C45C52"/>
+  <!-- Ribbon right -->
+  <path d="M164 172 Q150 160 136 172 L144 200 L164 188Z" fill="#C45C52"/>
+  <!-- Ribbon center -->
+  <rect x="100" y="168" width="40" height="16" rx="4" fill="#E8847A"/>
+
+  <!-- Sparkles -->
+  <path d="M42 68 L43.5 73 L48.5 73 L44.5 76 L46 81 L42 78.5 L38 81 L39.5 76 L35.5 73 L40.5 73Z" fill="#E8847A" opacity="0.55"/>
+  <path d="M198 68 L199.5 73 L204.5 73 L200.5 76 L202 81 L198 78.5 L194 81 L195.5 76 L191.5 73 L196.5 73Z" fill="#E8847A" opacity="0.5"/>
+  <circle cx="48" cy="160" r="5" fill="#E8847A" opacity="0.35"/>
+  <circle cx="192" cy="162" r="5" fill="#E8847A" opacity="0.35"/>
+</svg>

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <!-- Background -->
+  <circle cx="120" cy="120" r="110" fill="#FFF0E6"/>
+
+  <!-- Notebook -->
+  <rect x="54" y="44" width="132" height="168" rx="10" fill="#E07B39" opacity="0.2"/>
+  <rect x="54" y="44" width="132" height="168" rx="10" stroke="#EAD9CC" stroke-width="2"/>
+
+  <!-- Spine -->
+  <rect x="54" y="44" width="20" height="168" rx="8" fill="#E07B39" opacity="0.3"/>
+
+  <!-- Rings -->
+  <circle cx="64" cy="80" r="8" fill="white" stroke="#E07B39" stroke-width="2.5" opacity="0.7"/>
+  <circle cx="64" cy="120" r="8" fill="white" stroke="#E07B39" stroke-width="2.5" opacity="0.7"/>
+  <circle cx="64" cy="160" r="8" fill="white" stroke="#E07B39" stroke-width="2.5" opacity="0.7"/>
+
+  <!-- Page -->
+  <rect x="82" y="60" width="96" height="144" rx="4" fill="white"/>
+
+  <!-- Dashed lines (empty) -->
+  <line x1="92" y1="84" x2="168" y2="84" stroke="#EAD9CC" stroke-width="2" stroke-dasharray="6 4" stroke-linecap="round"/>
+  <line x1="92" y1="100" x2="168" y2="100" stroke="#EAD9CC" stroke-width="2" stroke-dasharray="6 4" stroke-linecap="round"/>
+  <line x1="92" y1="116" x2="168" y2="116" stroke="#EAD9CC" stroke-width="2" stroke-dasharray="6 4" stroke-linecap="round"/>
+  <line x1="92" y1="132" x2="155" y2="132" stroke="#EAD9CC" stroke-width="2" stroke-dasharray="6 4" stroke-linecap="round"/>
+  <line x1="92" y1="148" x2="162" y2="148" stroke="#EAD9CC" stroke-width="2" stroke-dasharray="6 4" stroke-linecap="round"/>
+  <line x1="92" y1="164" x2="148" y2="164" stroke="#EAD9CC" stroke-width="2" stroke-dasharray="6 4" stroke-linecap="round"/>
+
+  <!-- Pencil resting on book -->
+  <rect x="156" y="162" width="10" height="52" rx="3" transform="rotate(25 156 162)" fill="#F5A623" opacity="0.7"/>
+  <path d="M170 200 L175 210 L163 207Z" fill="#3D2314" opacity="0.5" transform="rotate(25 170 200)"/>
+
+  <!-- Small star doodle -->
+  <path d="M138 72 L139 76 L143 76 L140 78.5 L141 82.5 L138 80.5 L135 82.5 L136 78.5 L133 76 L137 76Z" fill="#F5A623" opacity="0.5"/>
+
+  <!-- Floating dots -->
+  <circle cx="42" cy="88" r="5" fill="#9B8EC4" opacity="0.35"/>
+  <circle cx="198" cy="92" r="5" fill="#E8847A" opacity="0.35"/>
+  <circle cx="44" cy="168" r="4" fill="#4CAF82" opacity="0.35"/>
+</svg>

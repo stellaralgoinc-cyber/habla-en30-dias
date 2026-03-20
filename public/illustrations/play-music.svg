@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <!-- Background -->
+  <circle cx="120" cy="120" r="110" fill="#FFF0E6"/>
+
+  <!-- Child face -->
+  <circle cx="120" cy="115" r="52" fill="#F5C4A0"/>
+  <!-- Hair -->
+  <path d="M72 108 Q76 72 120 68 Q164 72 168 108 Q160 78 120 76 Q80 78 72 108Z" fill="#7A5C4A" opacity="0.85"/>
+  <!-- Ears -->
+  <ellipse cx="70" cy="118" rx="9" ry="12" fill="#F5C4A0"/>
+  <ellipse cx="170" cy="118" rx="9" ry="12" fill="#F5C4A0"/>
+  <!-- Eyes (happy, squinting) -->
+  <path d="M100 105 Q106 100 112 105" stroke="#3D2314" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M128 105 Q134 100 140 105" stroke="#3D2314" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <!-- Cheeks -->
+  <ellipse cx="96" cy="118" rx="10" ry="7" fill="#E8847A" opacity="0.3"/>
+  <ellipse cx="144" cy="118" rx="10" ry="7" fill="#E8847A" opacity="0.3"/>
+  <!-- Open mouth (singing) -->
+  <path d="M103 128 Q120 142 137 128" fill="#C4622A" opacity="0.8"/>
+  <ellipse cx="120" cy="132" rx="14" ry="10" fill="#C4622A" opacity="0.7"/>
+  <!-- Teeth -->
+  <rect x="110" y="128" width="20" height="6" rx="3" fill="white" opacity="0.9"/>
+  <!-- Tongue -->
+  <ellipse cx="120" cy="138" rx="8" ry="5" fill="#E8847A" opacity="0.8"/>
+
+  <!-- Musical notes floating -->
+  <!-- Note 1 (left) -->
+  <text x="42" y="90" font-family="serif" font-size="32" fill="#E07B39" opacity="0.8">♪</text>
+  <!-- Note 2 (right top) -->
+  <text x="170" y="78" font-family="serif" font-size="28" fill="#9B8EC4" opacity="0.75">♫</text>
+  <!-- Note 3 (right bottom) -->
+  <text x="178" y="140" font-family="serif" font-size="24" fill="#F5A623" opacity="0.7">♩</text>
+  <!-- Note 4 (left bottom) -->
+  <text x="36" y="150" font-family="serif" font-size="20" fill="#7DB87A" opacity="0.65">♪</text>
+
+  <!-- Stars / sparkles -->
+  <path d="M68 52 L69.5 57 L74.5 57 L70.5 60 L72 65 L68 62.5 L64 65 L65.5 60 L61.5 57 L66.5 57Z" fill="#F5A623" opacity="0.6"/>
+  <path d="M178 48 L179 52 L183 52 L180 54.5 L181 58.5 L178 56.5 L175 58.5 L176 54.5 L173 52 L177 52Z" fill="#9B8EC4" opacity="0.55"/>
+</svg>
