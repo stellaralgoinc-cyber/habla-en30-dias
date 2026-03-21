@@ -145,27 +145,47 @@ function SuccessContent() {
     const supabase = createClient();
     setSaving(true);
     try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) {
+      // Step 1: Get the authenticated user
+      const { data: { user }, error: userError } = await supabase.auth.getUser();
+      if (userError || !user) {
         toast.error("Sesión expirada. Inicia sesión de nuevo.");
         router.push("/login");
         return;
       }
 
+      // Step 2: Ensure the profiles row exists before inserting child_profiles
+      // (child_profiles.user_id has a FK to profiles.id)
+      const { error: profileEnsureError } = await supabase
+        .from("profiles")
+        .upsert({ id: user.id, has_access: true }, { onConflict: "id" });
+
+      if (profileEnsureError) {
+        console.error("profiles upsert error:", profileEnsureError);
+        toast.error(`Error al verificar tu cuenta: ${profileEnsureError.message}`);
+        return;
+      }
+
+      // Step 3: Delete any existing child_profiles record to avoid conflicts
       const { data: existing } = await supabase
         .from("child_profiles")
         .select("id")
         .eq("user_id", user.id)
         .maybeSingle();
 
-      // Delete any existing record to avoid duplicate conflicts
       if (existing) {
-        await supabase
+        const { error: deleteError } = await supabase
           .from("child_profiles")
           .delete()
           .eq("user_id", user.id);
+
+        if (deleteError) {
+          console.error("child_profiles delete error:", deleteError);
+          toast.error(`Error al limpiar perfil anterior: ${deleteError.message}`);
+          return;
+        }
       }
 
+      // Step 4: Insert the new child profile
       const { error: childError } = await supabase
         .from("child_profiles")
         .insert({
@@ -177,15 +197,20 @@ function SuccessContent() {
         });
 
       if (childError) {
-        console.error("child_profiles save error:", childError);
+        console.error("child_profiles insert error:", childError);
         toast.error(`No pudimos guardar el perfil: ${childError.message}`);
         return;
       }
 
-      await supabase
+      // Step 5: Mark onboarding as done
+      const { error: onboardingError } = await supabase
         .from("profiles")
         .update({ onboarding_done: true })
         .eq("id", user.id);
+
+      if (onboardingError) {
+        console.error("onboarding_done update error:", onboardingError);
+      }
 
       router.push("/inicio");
       router.refresh();
