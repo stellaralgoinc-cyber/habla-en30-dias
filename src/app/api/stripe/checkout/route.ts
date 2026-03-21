@@ -7,17 +7,7 @@ export async function POST(request: NextRequest) {
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
 
-    const body = await request.json() as { email?: string };
-    const email = user?.email ?? body.email;
-
-    if (!email) {
-      return NextResponse.json(
-        { success: false, error: "Se requiere un correo electrónico." },
-        { status: 400 }
-      );
-    }
-
-    // Check if user already has access
+    // Check if logged-in user already has access
     if (user) {
       const { data: profile } = await supabase
         .from("profiles")
@@ -36,7 +26,8 @@ export async function POST(request: NextRequest) {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       mode:                 "payment",
-      customer_email:       email,
+      // If logged in, pre-fill email; otherwise Stripe collects it
+      ...(user?.email ? { customer_email: user.email } : {}),
       line_items: [
         {
           quantity: 1,
@@ -52,7 +43,6 @@ export async function POST(request: NextRequest) {
       ],
       metadata: {
         user_id: user?.id ?? "",
-        email,
       },
       success_url: `${request.nextUrl.origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url:  `${request.nextUrl.origin}/checkout`,
