@@ -148,29 +148,25 @@ function SuccessContent() {
         .from("child_profiles")
         .select("id")
         .eq("user_id", user.id)
-        .single();
+        .maybeSingle();
 
-      let childError;
+      // Delete any existing record to avoid duplicate conflicts
       if (existing) {
-        ({ error: childError } = await supabase
+        await supabase
           .from("child_profiles")
-          .update({
-            child_name:  data.childName,
-            birth_date:  data.birthDate || null,
-            speech_stage: data.speechStage,
-          })
-          .eq("user_id", user.id));
-      } else {
-        ({ error: childError } = await supabase
-          .from("child_profiles")
-          .insert({
-            user_id:            user.id,
-            child_name:         data.childName,
-            birth_date:         data.birthDate || null,
-            speech_stage:       data.speechStage,
-            started_program_at: new Date().toISOString().split("T")[0],
-          }));
+          .delete()
+          .eq("user_id", user.id);
       }
+
+      const { error: childError } = await supabase
+        .from("child_profiles")
+        .insert({
+          user_id:            user.id,
+          child_name:         data.childName,
+          birth_date:         data.birthDate || null,
+          speech_stage:       data.speechStage,
+          started_program_at: new Date().toISOString().split("T")[0],
+        });
 
       if (childError) {
         toast.error("No pudimos guardar el perfil. Intenta de nuevo.");
