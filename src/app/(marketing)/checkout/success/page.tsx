@@ -144,15 +144,15 @@ function SuccessContent() {
         return;
       }
 
-      const { error: childError } = await supabase.from("child_profiles").insert({
+      const { error: childError } = await supabase.from("child_profiles").upsert({
         user_id:            user.id,
         child_name:         data.childName,
         birth_date:         data.birthDate || null,
         speech_stage:       data.speechStage,
         started_program_at: new Date().toISOString().split("T")[0],
-      });
+      }, { onConflict: "user_id" });
 
-      if (childError && !childError.message.includes("unique")) {
+      if (childError) {
         toast.error("No pudimos guardar el perfil. Intenta de nuevo.");
         return;
       }
