@@ -1,6 +1,5 @@
 "use client";
 
-import { use } from "react";
 import { notFound, useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
@@ -13,23 +12,20 @@ import { PageTransition } from "@/components/shared/PageTransition";
 import type { Mood } from "@/types/program.types";
 
 interface DayPageProps {
-  params: Promise<{ day: string }>;
+  params: { day: string };
 }
 
 export default function DayPage({ params }: DayPageProps) {
-  const { day: dayParam } = use(params);
-  const dayNumber         = parseInt(dayParam, 10);
-  const router            = useRouter();
+  const dayNumber = parseInt(params.day, 10);
+  const router    = useRouter();
 
-  if (isNaN(dayNumber) || dayNumber < 1 || dayNumber > 30) {
+  const dayContent   = getDayContent(isNaN(dayNumber) ? 0 : dayNumber);
+  const { completeDay } = useDayProgress(dayNumber);
+  const { saveEntry }   = useBitacora();
+
+  if (isNaN(dayNumber) || dayNumber < 1 || dayNumber > 30 || !dayContent) {
     notFound();
   }
-
-  const dayContent                  = getDayContent(dayNumber);
-  const { completeDay }             = useDayProgress(dayNumber);
-  const { saveEntry }               = useBitacora();
-
-  if (!dayContent) notFound();
 
   async function handleComplete(params: {
     checklist:  Record<string, boolean>;

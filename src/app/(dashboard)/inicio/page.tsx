@@ -84,7 +84,7 @@ export default function InicioPage() {
       {/* Mood check-in (if yesterday has no mood and today > 1) */}
       {todayDay > 1 && !completedDays.includes(todayDay - 1) && (
         <MoodCheckin
-          dayNumber={todayDay}
+          dayNumber={todayDay - 1}
           onSelect={handleMoodSelect}
         />
       )}

@@ -48,7 +48,11 @@ export function getWeekNumber(dayNumber: number): number {
 }
 
 export function getProgramDay(startedAt: string): number {
-  const start = parseISO(startedAt);
+  // Strip any time/timezone component so the comparison is always date-only
+  // in the user's local timezone. This avoids UTC-offset bugs where
+  // "2026-03-21T06:00:00Z" parses to March 20 in UTC-6, making day 1 appear as day 2.
+  const dateOnly = startedAt.split("T")[0];
+  const start = parseISO(dateOnly);
   const diff = differenceInCalendarDays(new Date(), start) + 1;
   return Math.min(Math.max(diff, 1), 30);
 }

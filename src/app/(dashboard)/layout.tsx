@@ -5,7 +5,7 @@ import { BottomNav } from "@/components/shared/BottomNav";
 import { 
   ReinicioConectivoButton 
 } from "@/components/dashboard/ReinicioConectivo";
-import { ErrorBoundary } from "@/components/shared/ErrorBoundary";
+import { ErrorBoundaryWrapper } from "@/components/shared/ErrorBoundaryWrapper";
 
 export default async function DashboardLayout({
   children,
@@ -41,9 +41,9 @@ export default async function DashboardLayout({
       <DashboardSidebar />
       <main className="flex-1 min-w-0 pb-20 md:pb-0">
         <div className="max-w-2xl mx-auto px-4 py-6 md:px-6 md:py-8">
-          <ErrorBoundary>
+          <ErrorBoundaryWrapper>
             {children}
-          </ErrorBoundary>
+          </ErrorBoundaryWrapper>
         </div>
       </main>
       <BottomNav />
