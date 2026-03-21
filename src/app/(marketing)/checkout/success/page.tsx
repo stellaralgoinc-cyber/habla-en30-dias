@@ -105,7 +105,14 @@ function SuccessContent() {
         headers: { "Content-Type": "application/json" },
         body:    JSON.stringify({ session_id: sessionId, password }),
       });
-      const data = await res.json() as { success?: boolean; email?: string; error?: string };
+
+      let data: { success?: boolean; email?: string; error?: string };
+      try {
+        data = await res.json();
+      } catch {
+        toast.error("Error del servidor. Por favor intenta de nuevo.");
+        return;
+      }
 
       if (!data.success) {
         toast.error(data.error ?? "No pudimos crear tu cuenta. Intenta de nuevo.");
@@ -120,14 +127,15 @@ function SuccessContent() {
       });
 
       if (signInError) {
-        toast.error("Cuenta creada. Ahora puedes iniciar sesión.");
+        toast.error("Cuenta creada. Por favor inicia sesión manualmente.");
         router.push("/login");
         return;
       }
 
       setStep(1);
-    } catch {
-      toast.error("Error de conexión. Intenta de nuevo.");
+    } catch (err) {
+      console.error("handleCreateAccount error:", err);
+      toast.error("Error de conexión. Verifica tu internet e intenta de nuevo.");
     } finally {
       setIsCreating(false);
     }
@@ -169,7 +177,8 @@ function SuccessContent() {
         });
 
       if (childError) {
-        toast.error("No pudimos guardar el perfil. Intenta de nuevo.");
+        console.error("child_profiles save error:", childError);
+        toast.error(`No pudimos guardar el perfil: ${childError.message}`);
         return;
       }
 
