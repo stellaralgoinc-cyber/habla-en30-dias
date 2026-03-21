@@ -67,7 +67,7 @@ export default function LogrosPage() {
     allProgress,
     bitacoraEntries: entries,
     words,
-    hasUsedReinicio:  false,
+    hasUsedReinico:  false,
   });
 
   const byCategory = Object.entries(BADGE_CATEGORIES).map(([key, label]) => ({

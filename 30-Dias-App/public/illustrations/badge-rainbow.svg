@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <!-- Background -->
+  <circle cx="120" cy="120" r="110" fill="#FFF0E6"/>
+
+  <!-- Badge outer ring -->
+  <circle cx="120" cy="112" r="78" fill="#4CAF82" opacity="0.1"/>
+  <circle cx="120" cy="112" r="78" stroke="#4CAF82" stroke-width="3" opacity="0.35"/>
+
+  <!-- Badge inner circle -->
+  <circle cx="120" cy="112" r="62" fill="#4CAF82"/>
+  <!-- Badge shine -->
+  <ellipse cx="104" cy="88" rx="18" ry="12" fill="white" opacity="0.2" transform="rotate(-30 104 88)"/>
+
+  <!-- Rainbow arcs -->
+  <path d="M72 130 Q72 80 120 80 Q168 80 168 130" stroke="#E05555" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <path d="M80 130 Q80 90 120 90 Q160 90 160 130" stroke="#F5A623" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <path d="M88 130 Q88 98 120 98 Q152 98 152 130" stroke="#F5C842" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <path d="M96 130 Q96 106 120 106 Q144 106 144 130" stroke="#4CAF82" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <path d="M104 130 Q104 114 120 114 Q136 114 136 130" stroke="#6DB8D4" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <path d="M112 130 Q112 122 120 122 Q128 122 128 130" stroke="#9B8EC4" stroke-width="7" stroke-linecap="round" fill="none"/>
+
+  <!-- Clouds at rainbow base -->
+  <ellipse cx="78" cy="130" rx="14" ry="10" fill="white" opacity="0.9"/>
+  <ellipse cx="70" cy="128" rx="10" ry="8" fill="white" opacity="0.85"/>
+  <ellipse cx="162" cy="130" rx="14" ry="10" fill="white" opacity="0.9"/>
+  <ellipse cx="170" cy="128" rx="10" ry="8" fill="white" opacity="0.85"/>
+
+  <!-- Ribbon left -->
+  <path d="M76 172 Q90 160 104 172 L96 200 L76 188Z" fill="#3A9A6C"/>
+  <!-- Ribbon right -->
+  <path d="M164 172 Q150 160 136 172 L144 200 L164 188Z" fill="#3A9A6C"/>
+  <!-- Ribbon center -->
+  <rect x="100" y="168" width="40" height="16" rx="4" fill="#4CAF82"/>
+
+  <!-- Sparkles -->
+  <path d="M42 68 L43.5 73 L48.5 73 L44.5 76 L46 81 L42 78.5 L38 81 L39.5 76 L35.5 73 L40.5 73Z" fill="#4CAF82" opacity="0.55"/>
+  <path d="M198 68 L199.5 73 L204.5 73 L200.5 76 L202 81 L198 78.5 L194 81 L195.5 76 L191.5 73 L196.5 73Z" fill="#4CAF82" opacity="0.5"/>
+</svg>

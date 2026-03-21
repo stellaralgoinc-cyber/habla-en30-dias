@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <!-- Background -->
+  <circle cx="120" cy="120" r="110" fill="#FFF0E6"/>
+
+  <!-- Badge outer ring -->
+  <circle cx="120" cy="112" r="78" fill="#6DB8D4" opacity="0.12"/>
+  <circle cx="120" cy="112" r="78" stroke="#6DB8D4" stroke-width="3" opacity="0.35"/>
+
+  <!-- Badge inner circle -->
+  <circle cx="120" cy="112" r="62" fill="#6DB8D4"/>
+  <!-- Badge shine -->
+  <ellipse cx="104" cy="88" rx="18" ry="12" fill="white" opacity="0.2" transform="rotate(-30 104 88)"/>
+
+  <!-- Open book inside -->
+  <!-- Left page -->
+  <path d="M82 86 Q82 78 90 76 L120 76 L120 148 L90 148 Q82 148 82 140Z" fill="white" opacity="0.92"/>
+  <!-- Right page -->
+  <path d="M158 86 Q158 78 150 76 L120 76 L120 148 L150 148 Q158 148 158 140Z" fill="white" opacity="0.85"/>
+  <!-- Book spine -->
+  <line x1="120" y1="76" x2="120" y2="148" stroke="#6DB8D4" stroke-width="3" opacity="0.6"/>
+  <!-- Left page lines -->
+  <line x1="90" y1="95" x2="115" y2="95" stroke="#EAD9CC" stroke-width="2" stroke-linecap="round"/>
+  <line x1="90" y1="106" x2="115" y2="106" stroke="#EAD9CC" stroke-width="2" stroke-linecap="round"/>
+  <line x1="90" y1="117" x2="110" y2="117" stroke="#EAD9CC" stroke-width="2" stroke-linecap="round"/>
+  <line x1="90" y1="128" x2="113" y2="128" stroke="#EAD9CC" stroke-width="2" stroke-linecap="round"/>
+  <line x1="90" y1="139" x2="106" y2="139" stroke="#EAD9CC" stroke-width="2" stroke-linecap="round"/>
+  <!-- Right page lines -->
+  <line x1="125" y1="95" x2="150" y2="95" stroke="#EAD9CC" stroke-width="2" stroke-linecap="round"/>
+  <line x1="125" y1="106" x2="150" y2="106" stroke="#EAD9CC" stroke-width="2" stroke-linecap="round"/>
+  <line x1="125" y1="117" x2="146" y2="117" stroke="#EAD9CC" stroke-width="2" stroke-linecap="round"/>
+  <line x1="125" y1="128" x2="150" y2="128" stroke="#EAD9CC" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Star on right page -->
+  <path d="M138 82 L139.5 87 L144.5 87 L140.5 90 L142 95 L138 92.5 L134 95 L135.5 90 L131.5 87 L136.5 87Z" fill="#F5A623" opacity="0.7"/>
+
+  <!-- Ribbon left -->
+  <path d="M76 172 Q90 160 104 172 L96 200 L76 188Z" fill="#4EA8C4"/>
+  <!-- Ribbon right -->
+  <path d="M164 172 Q150 160 136 172 L144 200 L164 188Z" fill="#4EA8C4"/>
+  <!-- Ribbon center -->
+  <rect x="100" y="168" width="40" height="16" rx="4" fill="#6DB8D4"/>
+
+  <!-- Sparkles -->
+  <path d="M42 72 L43.5 77 L48.5 77 L44.5 80 L46 85 L42 82.5 L38 85 L39.5 80 L35.5 77 L40.5 77Z" fill="#6DB8D4" opacity="0.55"/>
+  <path d="M198 72 L199.5 77 L204.5 77 L200.5 80 L202 85 L198 82.5 L194 85 L195.5 80 L191.5 77 L196.5 77Z" fill="#6DB8D4" opacity="0.5"/>
+</svg>

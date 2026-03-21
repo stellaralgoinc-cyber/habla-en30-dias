@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <!-- Background -->
+  <circle cx="120" cy="120" r="110" fill="#FFF0E6"/>
+
+  <!-- Grass -->
+  <ellipse cx="120" cy="192" rx="80" ry="16" fill="#7DB87A" opacity="0.35"/>
+
+  <!-- Cat body -->
+  <ellipse cx="82" cy="155" rx="34" ry="28" fill="#F5C4A0" opacity="0.9"/>
+  <!-- Cat head -->
+  <circle cx="82" cy="115" r="28" fill="#F5C4A0"/>
+  <!-- Cat ears -->
+  <path d="M60 96 L54 74 L76 90Z" fill="#F5C4A0"/>
+  <path d="M104 96 L110 74 L88 90Z" fill="#F5C4A0"/>
+  <!-- Inner ears -->
+  <path d="M62 95 L57 79 L73 91Z" fill="#E8847A" opacity="0.5"/>
+  <path d="M102 95 L107 79 L91 91Z" fill="#E8847A" opacity="0.5"/>
+  <!-- Cat eyes -->
+  <ellipse cx="74" cy="112" rx="6" ry="7" fill="#4CAF82"/>
+  <ellipse cx="90" cy="112" rx="6" ry="7" fill="#4CAF82"/>
+  <ellipse cx="74" cy="112" rx="3" ry="6" fill="#3D2314"/>
+  <ellipse cx="90" cy="112" rx="3" ry="6" fill="#3D2314"/>
+  <!-- Nose -->
+  <path d="M80 121 L82 124 L84 121Z" fill="#E8847A"/>
+  <!-- Whiskers -->
+  <line x1="54" y1="118" x2="76" y2="122" stroke="#3D2314" stroke-width="1.5" opacity="0.4"/>
+  <line x1="54" y1="124" x2="76" y2="124" stroke="#3D2314" stroke-width="1.5" opacity="0.4"/>
+  <line x1="110" y1="118" x2="88" y2="122" stroke="#3D2314" stroke-width="1.5" opacity="0.4"/>
+  <line x1="110" y1="124" x2="88" y2="124" stroke="#3D2314" stroke-width="1.5" opacity="0.4"/>
+  <!-- Cat mouth -->
+  <path d="M78 126 Q82 130 86 126" stroke="#3D2314" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+  <!-- Cat tail -->
+  <path d="M48 175 Q28 150 40 130 Q50 115 58 135" stroke="#F5C4A0" stroke-width="10" stroke-linecap="round" fill="none"/>
+
+  <!-- Duck -->
+  <!-- Duck body -->
+  <ellipse cx="158" cy="158" rx="28" ry="22" fill="#F5A623" opacity="0.85"/>
+  <!-- Duck head -->
+  <circle cx="170" cy="128" r="20" fill="#F5A623" opacity="0.9"/>
+  <!-- Duck beak -->
+  <path d="M183 130 L196 128 L183 126Z" fill="#E07B39"/>
+  <!-- Duck eye -->
+  <circle cx="175" cy="124" r="5" fill="#3D2314"/>
+  <circle cx="176" cy="123" r="1.5" fill="white"/>
+  <!-- Duck wing -->
+  <path d="M136 154 Q150 140 172 150" stroke="#C4622A" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6"/>
+  <!-- Duck feet -->
+  <path d="M148 176 L138 182 M148 176 L142 184 M148 176 L150 184" stroke="#E07B39" stroke-width="3" stroke-linecap="round"/>
+  <path d="M165 178 L155 184 M165 178 L159 186 M165 178 L167 186" stroke="#E07B39" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Speech bubbles -->
+  <path d="M96 88 Q106 78 116 84 Q122 90 114 98 Q109 104 100 98 Q92 94 96 88Z" fill="white" stroke="#EAD9CC" stroke-width="1.5"/>
+  <text x="100" y="96" font-size="14">🐾</text>
+
+  <!-- Floating dots -->
+  <circle cx="44" cy="64" r="6" fill="#9B8EC4" opacity="0.45"/>
+  <circle cx="196" cy="72" r="7" fill="#E8847A" opacity="0.4"/>
+</svg>

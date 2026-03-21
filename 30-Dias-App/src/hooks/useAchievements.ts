@@ -11,14 +11,14 @@ interface UseAchievementsParams {
   bitacoraEntries: BitacoraEntry[];
   words:         WordLog[];
   unlockedBadges: Achievement[];
-  hasUsedReinicio: boolean;
+  hasUsedReinico: boolean;
 }
 
 export function computeUnlockedBadgeIds({
   allProgress,
   bitacoraEntries,
   words,
-  hasUsedReinicio,
+  hasUsedReinico,
 }: Omit<UseAchievementsParams, "unlockedBadges">): Set<string> {
   const ids = new Set<string>();
   const completedDays = allProgress.map((p) => p.day_number);
@@ -63,7 +63,7 @@ export function computeUnlockedBadgeIds({
                                                                ids.add("guardadora-momentos");
 
   // RESILIENCIA
-  if (hasUsedReinicio)                                          ids.add("reinicio-conectivo");
+  if (hasUsedReinico)                                          ids.add("reinicio-conectivo");
   if (allProgress.some((p) => p.mood === "dificil"))           ids.add("dia-dificil");
   // Completed after a missed day
   const sortedDayNums = completedDays.sort((a,b) => a-b);
@@ -81,11 +81,11 @@ export function useAchievements({
   allProgress,
   bitacoraEntries,
   words,
-  hasUsedReinicio,
+  hasUsedReinico,
 }: Omit<UseAchievementsParams, "unlockedBadges">) {
   const earnedIds = useMemo(
-    () => computeUnlockedBadgeIds({ allProgress, bitacoraEntries, words, hasUsedReinicio }),
-    [allProgress, bitacoraEntries, words, hasUsedReinicio]
+    () => computeUnlockedBadgeIds({ allProgress, bitacoraEntries, words, hasUsedReinico }),
+    [allProgress, bitacoraEntries, words, hasUsedReinico]
   );
 
   const badges = useMemo(

@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Progress } from "@/components/ui/Progress";
 import { CelebrationOverlay } from "./CelebrationOverlay";
-import { ReinicioConectivoModal } from "./ReinicioConectivo";
+import { ReinicoConectivoModal } from "./ReinicoConectivo";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import type { DayContent, Mood } from "@/types/program.types";
@@ -85,7 +85,7 @@ export function ActivityStepper({ dayContent, onComplete }: ActivityStepperProps
   const [parentFeel, setParentFeel] = useState("");
   const [wordInput, setWordInput]   = useState("");
   const [celebrating, setCelebrating] = useState(false);
-  const [reinicioOpen, setReinicio]   = useState(false);
+  const [reinicoOpen, setReinico]   = useState(false);
   const [saving, setSaving]         = useState(false);
 
   const phaseIndex = PHASE_ORDER.indexOf(phase);
@@ -465,14 +465,14 @@ export function ActivityStepper({ dayContent, onComplete }: ActivityStepperProps
       {/* Reinicio Conectivo inline button */}
       {phase !== "done" && (
         <button
-          onClick={() => setReinicio(true)}
+          onClick={() => setReinico(true)}
           className="w-full text-center font-accent text-xs text-[var(--color-muted)] hover:text-[var(--color-accent-lavender)] py-2 transition-colors"
         >
           ¿Necesitas un momento de pausa? → Reinicio Conectivo
         </button>
       )}
 
-      <ReinicioConectivoModal open={reinicioOpen} onOpenChange={setReinicio} />
+      <ReinicoConectivoModal open={reinicoOpen} onOpenChange={setReinico} />
 
       <CelebrationOverlay
         open={celebrating}

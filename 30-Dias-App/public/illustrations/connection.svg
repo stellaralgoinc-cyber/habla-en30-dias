@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <!-- Background -->
+  <circle cx="120" cy="120" r="110" fill="#FFF0E6"/>
+
+  <!-- Breathing rings (outer to inner) -->
+  <circle cx="120" cy="120" r="90" stroke="#9B8EC4" stroke-width="2" opacity="0.15" fill="#9B8EC4" fill-opacity="0.04"/>
+  <circle cx="120" cy="120" r="74" stroke="#9B8EC4" stroke-width="2.5" opacity="0.22" fill="#9B8EC4" fill-opacity="0.06"/>
+  <circle cx="120" cy="120" r="58" stroke="#9B8EC4" stroke-width="3" opacity="0.3" fill="#9B8EC4" fill-opacity="0.09"/>
+  <circle cx="120" cy="120" r="42" stroke="#9B8EC4" stroke-width="3.5" opacity="0.4" fill="#9B8EC4" fill-opacity="0.12"/>
+  <circle cx="120" cy="120" r="28" stroke="#9B8EC4" stroke-width="4" opacity="0.55" fill="#9B8EC4" fill-opacity="0.18"/>
+
+  <!-- Center circle -->
+  <circle cx="120" cy="120" r="18" fill="#9B8EC4" opacity="0.85"/>
+
+  <!-- Wind icon in center -->
+  <path d="M108 116 Q120 110 128 116 Q134 120 128 126 Q122 130 120 124" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M108 122 Q118 118 124 122 Q130 126 126 130" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+
+  <!-- Soft glow dots at cardinal points -->
+  <circle cx="120" cy="30" r="6" fill="#9B8EC4" opacity="0.3"/>
+  <circle cx="210" cy="120" r="6" fill="#9B8EC4" opacity="0.3"/>
+  <circle cx="120" cy="210" r="6" fill="#9B8EC4" opacity="0.3"/>
+  <circle cx="30" cy="120" r="6" fill="#9B8EC4" opacity="0.3"/>
+
+  <!-- Corner sparkles -->
+  <path d="M52 52 L53.5 57 L58.5 57 L54.5 60 L56 65 L52 62.5 L48 65 L49.5 60 L45.5 57 L50.5 57Z" fill="#E8847A" opacity="0.5"/>
+  <path d="M188 52 L189.5 57 L194.5 57 L190.5 60 L192 65 L188 62.5 L184 65 L185.5 60 L181.5 57 L186.5 57Z" fill="#F5A623" opacity="0.5"/>
+  <path d="M52 188 L53 192 L57 192 L54 194.5 L55 198.5 L52 196.5 L49 198.5 L50 194.5 L47 192 L51 192Z" fill="#4CAF82" opacity="0.5"/>
+  <path d="M188 188 L189 192 L193 192 L190 194.5 L191 198.5 L188 196.5 L185 198.5 L186 194.5 L183 192 L187 192Z" fill="#9B8EC4" opacity="0.5"/>
+</svg>

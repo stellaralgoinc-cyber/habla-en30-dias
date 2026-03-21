@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <!-- Background -->
+  <circle cx="120" cy="120" r="110" fill="#FFF0E6"/>
+
+  <!-- Path / road -->
+  <path d="M60 200 Q120 160 180 200" stroke="#EAD9CC" stroke-width="8" stroke-linecap="round" fill="none"/>
+
+  <!-- House -->
+  <rect x="78" y="118" width="64" height="56" rx="6" fill="#E07B39" opacity="0.85"/>
+  <!-- Roof -->
+  <path d="M68 122 L120 82 L172 122Z" fill="#C4622A"/>
+  <!-- Door -->
+  <rect x="105" y="148" width="30" height="26" rx="15" fill="#FFF0E6"/>
+  <!-- Door glow -->
+  <ellipse cx="120" cy="154" rx="10" ry="14" fill="#F5A623" opacity="0.4"/>
+  <!-- Window left -->
+  <rect x="84" y="128" width="20" height="16" rx="4" fill="#FFF0E6" opacity="0.8"/>
+  <line x1="94" y1="128" x2="94" y2="144" stroke="#EAD9CC" stroke-width="1.5"/>
+  <line x1="84" y1="136" x2="104" y2="136" stroke="#EAD9CC" stroke-width="1.5"/>
+  <!-- Window right -->
+  <rect x="136" y="128" width="20" height="16" rx="4" fill="#FFF0E6" opacity="0.8"/>
+  <line x1="146" y1="128" x2="146" y2="144" stroke="#EAD9CC" stroke-width="1.5"/>
+  <line x1="136" y1="136" x2="156" y2="136" stroke="#EAD9CC" stroke-width="1.5"/>
+
+  <!-- Stars coming from door -->
+  <path d="M120 138 L121.5 143 L126.5 143 L122.5 146 L124 151 L120 148.5 L116 151 L117.5 146 L113.5 143 L118.5 143Z" fill="#F5A623"/>
+  <path d="M105 124 L106 128 L110 128 L107 130.5 L108 134.5 L105 132.5 L102 134.5 L103 130.5 L100 128 L104 128Z" fill="#F5A623" opacity="0.7"/>
+  <path d="M135 122 L136 126 L140 126 L137 128.5 L138 132.5 L135 130.5 L132 132.5 L133 128.5 L130 126 L134 126Z" fill="#9B8EC4" opacity="0.7"/>
+
+  <!-- Tree left -->
+  <rect x="46" y="160" width="8" height="24" rx="3" fill="#7A5C4A"/>
+  <circle cx="50" cy="150" r="18" fill="#4CAF82" opacity="0.75"/>
+  <circle cx="42" cy="156" r="12" fill="#4CAF82" opacity="0.6"/>
+  <circle cx="58" cy="154" r="13" fill="#7DB87A" opacity="0.65"/>
+
+  <!-- Tree right -->
+  <rect x="182" y="162" width="8" height="22" rx="3" fill="#7A5C4A"/>
+  <circle cx="186" cy="152" r="16" fill="#7DB87A" opacity="0.75"/>
+
+  <!-- Clouds -->
+  <ellipse cx="60" cy="68" rx="24" ry="14" fill="white" opacity="0.8"/>
+  <ellipse cx="76" cy="62" rx="18" ry="12" fill="white" opacity="0.8"/>
+  <ellipse cx="46" cy="66" rx="16" ry="10" fill="white" opacity="0.7"/>
+
+  <!-- Sun -->
+  <circle cx="185" cy="62" r="20" fill="#F5A623" opacity="0.85"/>
+  <circle cx="185" cy="62" r="14" fill="#F5C842"/>
+  <!-- Sun rays -->
+  <line x1="185" y1="36" x2="185" y2="30" stroke="#F5A623" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  <line x1="202" y1="45" x2="206" y2="41" stroke="#F5A623" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  <line x1="211" y1="62" x2="217" y2="62" stroke="#F5A623" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  <line x1="168" y1="45" x2="164" y2="41" stroke="#F5A623" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+</svg>

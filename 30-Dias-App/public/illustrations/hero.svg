@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <!-- Background -->
+  <circle cx="120" cy="120" r="110" fill="#FFF0E6"/>
+
+  <!-- Floor -->
+  <ellipse cx="120" cy="185" rx="75" ry="14" fill="#EAD9CC" opacity="0.5"/>
+
+  <!-- Parent body -->
+  <rect x="58" y="118" width="56" height="62" rx="20" fill="#E07B39"/>
+  <!-- Parent legs crossed -->
+  <ellipse cx="86" cy="178" rx="32" ry="12" fill="#C4622A"/>
+
+  <!-- Parent head -->
+  <circle cx="86" cy="102" r="24" fill="#F5C4A0"/>
+  <!-- Parent hair -->
+  <path d="M64 96 Q68 76 86 74 Q104 76 108 96 Q104 80 86 78 Q68 80 64 96Z" fill="#3D2314" opacity="0.85"/>
+  <!-- Parent eyes -->
+  <ellipse cx="79" cy="100" rx="3" ry="3.5" fill="#3D2314"/>
+  <ellipse cx="93" cy="100" rx="3" ry="3.5" fill="#3D2314"/>
+  <!-- Parent smile -->
+  <path d="M78 110 Q86 116 94 110" stroke="#3D2314" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+  <!-- Child sitting on parent lap -->
+  <rect x="98" y="130" width="36" height="40" rx="14" fill="#9B8EC4"/>
+  <!-- Child head -->
+  <circle cx="116" cy="118" r="18" fill="#F5C4A0"/>
+  <!-- Child hair -->
+  <path d="M100 112 Q104 99 116 98 Q128 99 132 112 Q128 102 116 100 Q104 102 100 112Z" fill="#7A5C4A" opacity="0.8"/>
+  <!-- Child eyes (looking up happy) -->
+  <ellipse cx="110" cy="116" rx="2.5" ry="3" fill="#3D2314"/>
+  <ellipse cx="122" cy="116" rx="2.5" ry="3" fill="#3D2314"/>
+  <!-- Child smile -->
+  <path d="M109 124 Q116 130 123 124" stroke="#3D2314" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+  <!-- Speech bubble -->
+  <path d="M130 96 Q148 86 155 98 Q162 110 148 116 Q141 124 133 116 Q124 112 128 102Z" fill="white" stroke="#EAD9CC" stroke-width="1.5"/>
+  <!-- Star in bubble -->
+  <path d="M143 98 L144.5 103 L149.5 103 L145.5 106 L147 111 L143 108 L139 111 L140.5 106 L136.5 103 L141.5 103Z" fill="#F5A623"/>
+
+  <!-- Decorative dots -->
+  <circle cx="44" cy="72" r="7" fill="#4CAF82" opacity="0.5"/>
+  <circle cx="196" cy="68" r="6" fill="#9B8EC4" opacity="0.45"/>
+  <circle cx="200" cy="155" r="5" fill="#E8847A" opacity="0.4"/>
+  <circle cx="36" cy="158" r="4" fill="#F5A623" opacity="0.45"/>
+  <!-- Sparkles -->
+  <path d="M172 44 L173.5 48 L177.5 48 L174.5 51 L176 55 L172 52.5 L168 55 L169.5 51 L166.5 48 L170.5 48Z" fill="#F5A623" opacity="0.6"/>
+  <path d="M52 44 L53 47 L56 47 L53.5 49.5 L54.5 52.5 L52 51 L49.5 52.5 L50.5 49.5 L48 47 L51 47Z" fill="#9B8EC4" opacity="0.55"/>
+</svg>

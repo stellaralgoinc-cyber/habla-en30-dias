@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <!-- Background -->
+  <circle cx="120" cy="120" r="110" fill="#FFF0E6"/>
+
+  <!-- Badge outer ring -->
+  <circle cx="120" cy="112" r="78" fill="#F5A623" opacity="0.15"/>
+  <circle cx="120" cy="112" r="78" stroke="#F5A623" stroke-width="3" opacity="0.4"/>
+
+  <!-- Badge inner circle -->
+  <circle cx="120" cy="112" r="62" fill="#F5A623"/>
+
+  <!-- Badge shine -->
+  <ellipse cx="104" cy="88" rx="18" ry="12" fill="white" opacity="0.2" transform="rotate(-30 104 88)"/>
+
+  <!-- Star -->
+  <path d="M120 60 L127 85 L154 85 L132 101 L140 126 L120 111 L100 126 L108 101 L86 85 L113 85Z" fill="white" opacity="0.95"/>
+
+  <!-- Ribbon left -->
+  <path d="M76 172 Q90 160 104 172 L96 200 L76 188Z" fill="#E07B39"/>
+  <!-- Ribbon right -->
+  <path d="M164 172 Q150 160 136 172 L144 200 L164 188Z" fill="#E07B39"/>
+  <!-- Ribbon center -->
+  <rect x="100" y="168" width="40" height="16" rx="4" fill="#C4622A"/>
+
+  <!-- Side sparkles -->
+  <path d="M36 72 L37.5 77 L42.5 77 L38.5 80 L40 85 L36 82.5 L32 85 L33.5 80 L29.5 77 L34.5 77Z" fill="#F5A623" opacity="0.6"/>
+  <path d="M204 72 L205.5 77 L210.5 77 L206.5 80 L208 85 L204 82.5 L200 85 L201.5 80 L197.5 77 L202.5 77Z" fill="#F5A623" opacity="0.6"/>
+</svg>

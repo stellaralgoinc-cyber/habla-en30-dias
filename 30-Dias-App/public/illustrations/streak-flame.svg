@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <!-- Background -->
+  <circle cx="120" cy="120" r="110" fill="#FFF0E6"/>
+
+  <!-- Outer glow -->
+  <ellipse cx="120" cy="152" rx="52" ry="16" fill="#F5A623" opacity="0.2"/>
+
+  <!-- Flame outer (orange) -->
+  <path d="M120 30
+    C120 30 158 68 162 102
+    C166 130 154 148 146 158
+    C144 140 138 132 130 128
+    C134 112 128 90 120 78
+    C112 90 106 112 110 128
+    C102 132 96 140 94 158
+    C86 148 74 130 78 102
+    C82 68 120 30 120 30Z"
+    fill="#E07B39"/>
+
+  <!-- Flame mid (gold) -->
+  <path d="M120 62
+    C120 62 148 90 150 114
+    C152 132 144 146 138 154
+    C136 140 130 132 124 128
+    C128 116 124 100 120 90
+    C116 100 112 116 116 128
+    C110 132 104 140 102 154
+    C96 146 88 132 90 114
+    C92 90 120 62 120 62Z"
+    fill="#F5A623"/>
+
+  <!-- Flame inner (warm yellow) -->
+  <path d="M120 96
+    C120 96 136 110 136 126
+    C136 138 130 148 124 154
+    C122 144 120 136 120 128
+    C120 136 118 144 116 154
+    C110 148 104 138 104 126
+    C104 110 120 96 120 96Z"
+    fill="#F5C842"/>
+
+  <!-- Flame core (white center) -->
+  <ellipse cx="120" cy="136" rx="10" ry="14" fill="white" opacity="0.5"/>
+
+  <!-- Number -->
+  <text x="120" y="145" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="white" text-anchor="middle" opacity="0.9">🔥</text>
+
+  <!-- Sparkles -->
+  <path d="M60 70 L61.5 75 L66.5 75 L62.5 78 L64 83 L60 80.5 L56 83 L57.5 78 L53.5 75 L58.5 75Z" fill="#F5A623" opacity="0.6"/>
+  <path d="M180 68 L181.5 73 L186.5 73 L182.5 76 L184 81 L180 78.5 L176 81 L177.5 76 L173.5 73 L178.5 73Z" fill="#E07B39" opacity="0.55"/>
+  <circle cx="60" cy="160" r="6" fill="#F5A623" opacity="0.35"/>
+  <circle cx="180" cy="162" r="6" fill="#E07B39" opacity="0.35"/>
+
+  <!-- Small heat dots rising -->
+  <circle cx="100" cy="48" r="4" fill="#E07B39" opacity="0.25"/>
+  <circle cx="120" cy="38" r="3" fill="#F5A623" opacity="0.2"/>
+  <circle cx="140" cy="50" r="4" fill="#E07B39" opacity="0.22"/>
+</svg>

@@ -2,9 +2,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { DashboardSidebar } from "@/components/shared/DashboardSidebar";
 import { BottomNav } from "@/components/shared/BottomNav";
-import { 
-  ReinicioConectivoButton 
-} from "@/components/dashboard/ReinicioConectivo";
+import { ReinicoConectivoButton } from "@/components/dashboard/ReinicoConectivo";
 import { ErrorBoundary } from "@/components/shared/ErrorBoundary";
 
 export default async function DashboardLayout({
@@ -47,7 +45,7 @@ export default async function DashboardLayout({
         </div>
       </main>
       <BottomNav />
-      <ReinicioConectivoButton />
+      <ReinicoConectivoButton />
     </div>
   );
 }
