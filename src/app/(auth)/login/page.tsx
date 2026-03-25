@@ -118,13 +118,23 @@ function LoginForm() {
               error={errors.email?.message}
               {...register("email")}
             />
-            <Input
-              label="Contraseña"
-              type="password"
-              placeholder="Tu contraseña"
-              error={errors.password?.message}
-              {...register("password")}
-            />
+            <div className="space-y-1">
+              <Input
+                label="Contraseña"
+                type="password"
+                placeholder="Tu contraseña"
+                error={errors.password?.message}
+                {...register("password")}
+              />
+              <div className="flex justify-end">
+                <Link
+                  href="/olvide-contrasena"
+                  className="text-xs font-body text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] transition-colors"
+                >
+                  ¿Olvidaste tu contraseña?
+                </Link>
+              </div>
+            </div>
 
             <Button
               type="submit"

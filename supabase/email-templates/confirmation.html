@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="color-scheme" content="light" />
+  <meta name="supported-color-schemes" content="light" />
+  <title>Confirma tu cuenta — Habla en 30 Días</title>
+  <!--[if mso]>
+  <noscript>
+    <xml>
+      <o:OfficeDocumentSettings>
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+    </xml>
+  </noscript>
+  <![endif]-->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, table, td, a {
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+
+    table, td {
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+    }
+
+    img {
+      -ms-interpolation-mode: bicubic;
+      border: 0;
+      height: auto;
+      line-height: 100%;
+      outline: none;
+      text-decoration: none;
+    }
+
+    body {
+      background-color: #F5EDE3;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+
+    .email-wrapper {
+      background-color: #F5EDE3;
+      padding: 48px 24px;
+    }
+
+    .email-container {
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* ── Header / Logo ── */
+    .email-header {
+      text-align: center;
+      padding-bottom: 32px;
+    }
+
+    .logo-mark {
+      display: inline-block;
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, #E07B39 0%, #B85E25 100%);
+      border-radius: 16px;
+      line-height: 52px;
+      text-align: center;
+      font-size: 24px;
+      box-shadow: 0 4px 16px rgba(224, 123, 57, 0.35);
+      margin-bottom: 16px;
+    }
+
+    .brand-name {
+      font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: #3D2314;
+      letter-spacing: -0.02em;
+      display: block;
+      line-height: 1.2;
+    }
+
+    .brand-tagline {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: #B09080;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: block;
+      margin-top: 4px;
+    }
+
+    /* ── Main Card ── */
+    .email-card {
+      background-color: #FFFFFF;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 2px 24px rgba(61, 35, 20, 0.10), 0 1px 4px rgba(61, 35, 20, 0.06);
+      border: 1px solid #EAD9CC;
+    }
+
+    /* ── Hero Strip ── */
+    .card-hero {
+      background: linear-gradient(135deg, #FFF0E6 0%, #FDE8D4 50%, #FAD9BC 100%);
+      padding: 40px 40px 36px;
+      text-align: center;
+      border-bottom: 1px solid #EAD9CC;
+      position: relative;
+    }
+
+    .hero-icon-wrap {
+      display: inline-block;
+      width: 72px;
+      height: 72px;
+      background: #FFFFFF;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 72px;
+      font-size: 32px;
+      box-shadow: 0 4px 20px rgba(224, 123, 57, 0.20);
+      margin-bottom: 20px;
+      border: 2px solid #EAD9CC;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: #3D2314;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .hero-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: #7A5C4A;
+      line-height: 1.6;
+    }
+
+    /* ── Card Body ── */
+    .card-body {
+      padding: 36px 40px 40px;
+    }
+
+    .body-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: #7A5C4A;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    /* ── CTA Button ── */
+    .cta-wrap {
+      text-align: center;
+      margin: 32px 0;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #E07B39 0%, #C96B2A 100%);
+      color: #FFFFFF !important;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      padding: 16px 40px;
+      border-radius: 14px;
+      box-shadow: 0 4px 20px rgba(224, 123, 57, 0.40), 0 1px 4px rgba(224, 123, 57, 0.25);
+      mso-padding-alt: 0;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      border: none;
+      border-top: 1px solid #EAD9CC;
+      margin: 28px 0;
+    }
+
+    /* ── Fallback Link Block ── */
+    .fallback-wrap {
+      background-color: #FDF8F3;
+      border: 1px solid #EAD9CC;
+      border-radius: 14px;
+      padding: 16px 20px;
+    }
+
+    .fallback-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: #B09080;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .fallback-link {
+      font-family: 'Inter', monospace;
+      font-size: 12px;
+      color: #E07B39 !important;
+      word-break: break-all;
+      line-height: 1.5;
+      text-decoration: none;
+    }
+
+    /* ── Expiry Notice ── */
+    .expiry-notice {
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .expiry-pill {
+      display: inline-block;
+      background-color: #FFF0E6;
+      border: 1px solid #EAD9CC;
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: #B85E25;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── Quote Block ── */
+    .quote-block {
+      background: linear-gradient(135deg, #F3EFFC 0%, #EEF0FC 100%);
+      border-left: 3px solid #9B8EC4;
+      border-radius: 0 12px 12px 0;
+      padding: 16px 20px;
+      margin: 28px 0 0;
+    }
+
+    .quote-text {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 14px;
+      font-style: italic;
+      color: #3D2314;
+      line-height: 1.6;
+    }
+
+    .quote-attr {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      color: #9B8EC4;
+      margin-top: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      display: block;
+    }
+
+    /* ── Footer ── */
+    .email-footer {
+      text-align: center;
+      padding-top: 28px;
+      padding-bottom: 8px;
+    }
+
+    .footer-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #B09080;
+      line-height: 1.6;
+    }
+
+    .footer-link {
+      color: #B09080 !important;
+      text-decoration: underline;
+    }
+
+    .footer-dots {
+      color: #EAD9CC;
+      margin: 0 6px;
+    }
+
+    /* ── Responsive ── */
+    @media only screen and (max-width: 600px) {
+      .email-wrapper {
+        padding: 28px 16px;
+      }
+
+      .card-hero {
+        padding: 32px 24px 28px;
+      }
+
+      .card-body {
+        padding: 28px 24px 32px;
+      }
+
+      .hero-title {
+        font-size: 22px;
+      }
+
+      .cta-button {
+        display: block;
+        text-align: center;
+        padding: 16px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="email-wrapper">
+    <div class="email-container">
+
+      <!-- ── Header ── -->
+      <div class="email-header">
+        <div class="logo-mark">🌻</div>
+        <span class="brand-name">Habla en 30 Días</span>
+        <span class="brand-tagline">Programa de Lenguaje Infantil</span>
+      </div>
+
+      <!-- ── Main Card ── -->
+      <div class="email-card">
+
+        <!-- Hero Strip -->
+        <div class="card-hero">
+          <div class="hero-icon-wrap">✉️</div>
+          <h1 class="hero-title">Confirma tu cuenta</h1>
+          <p class="hero-subtitle">Un último paso antes de comenzar el viaje</p>
+        </div>
+
+        <!-- Body -->
+        <div class="card-body">
+
+          <p class="body-text">
+            Gracias por unirte a <strong style="color: #3D2314; font-weight: 600;">Habla en 30 Días</strong>.
+            Para activar tu cuenta y acceder al programa, confirma tu dirección de correo con el botón de abajo.
+          </p>
+
+          <!-- CTA -->
+          <div class="cta-wrap">
+            <!--[if mso]>
+            <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"
+              href="{{ .ConfirmationURL }}"
+              style="height:52px;v-text-anchor:middle;width:240px;" arcsize="27%"
+              stroke="f" fillcolor="#E07B39">
+              <w:anchorlock/>
+              <center style="color:#ffffff;font-family:sans-serif;font-size:15px;font-weight:bold;">
+                Confirmar mi cuenta
+              </center>
+            </v:roundrect>
+            <![endif]-->
+            <!--[if !mso]><!-->
+            <a href="{{ .ConfirmationURL }}" class="cta-button" target="_blank">
+              Confirmar mi cuenta
+            </a>
+            <!--<![endif]-->
+          </div>
+
+          <!-- Expiry -->
+          <div class="expiry-notice">
+            <span class="expiry-pill">⏱ Este enlace es válido por 24 horas</span>
+          </div>
+
+          <hr class="divider" />
+
+          <p class="body-text" style="margin-bottom: 12px; font-size: 13px;">
+            Si el botón no funciona, copia y pega el siguiente enlace en tu navegador:
+          </p>
+
+          <!-- Fallback link -->
+          <div class="fallback-wrap">
+            <span class="fallback-label">Enlace de confirmación</span>
+            <a href="{{ .ConfirmationURL }}" class="fallback-link" target="_blank">{{ .ConfirmationURL }}</a>
+          </div>
+
+          <!-- Motivational Quote -->
+          <div class="quote-block">
+            <p class="quote-text">
+              "Tu hijo ya quiere hablar. Tú eres el puente."
+            </p>
+            <span class="quote-attr">Habla en 30 Días</span>
+          </div>
+
+        </div>
+        <!-- /card-body -->
+
+      </div>
+      <!-- /email-card -->
+
+      <!-- ── Footer ── -->
+      <div class="email-footer">
+        <p class="footer-text">
+          Si no creaste esta cuenta, puedes ignorar este mensaje sin problema.
+        </p>
+        <p class="footer-text" style="margin-top: 12px;">
+          © 2025 Habla en 30 Días
+          <span class="footer-dots">·</span>
+          <a href="{{ .SiteURL }}/privacidad" class="footer-link">Privacidad</a>
+          <span class="footer-dots">·</span>
+          <a href="{{ .SiteURL }}/terminos" class="footer-link">Términos</a>
+        </p>
+      </div>
+
+    </div>
+    <!-- /email-container -->
+  </div>
+  <!-- /email-wrapper -->
+</body>
+</html>
