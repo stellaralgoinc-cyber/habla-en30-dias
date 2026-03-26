@@ -4,15 +4,23 @@ import { createClient } from "@supabase/supabase-js";
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json() as { session_id: string; password: string };
-    const { session_id, password } = body;
+    const body = await request.json() as {
+      session_id: string;
+      password:   string;
+      full_name:  string;
+    };
+    const { session_id, password, full_name } = body;
 
-    if (!session_id || !password) {
+    if (!session_id || !password || !full_name) {
       return NextResponse.json({ error: "Datos incompletos" }, { status: 400 });
     }
 
     if (password.length < 8) {
       return NextResponse.json({ error: "La contraseña debe tener al menos 8 caracteres" }, { status: 400 });
+    }
+
+    if (full_name.trim().length < 2) {
+      return NextResponse.json({ error: "El nombre completo es requerido" }, { status: 400 });
     }
 
     // Verify Stripe session
@@ -32,7 +40,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "No se encontró el correo en la sesión de pago" }, { status: 400 });
     }
 
-    const customerId = typeof stripeSession.customer === "string" ? stripeSession.customer : null;
+    const customerId   = typeof stripeSession.customer === "string" ? stripeSession.customer : null;
     const paymentIntent = typeof stripeSession.payment_intent === "string" ? stripeSession.payment_intent : null;
 
     const supabase = createClient(
@@ -42,15 +50,16 @@ export async function POST(request: NextRequest) {
 
     let userId: string;
 
-    // Try to create the user first
+    // Try to create the user — email_confirm:false so Supabase sends a real confirmation email
     const { data: newUser, error: createError } = await supabase.auth.admin.createUser({
       email,
       password,
-      email_confirm: true,
+      email_confirm: false,
+      user_metadata: { full_name: full_name.trim() },
     });
 
     if (createError) {
-      // If user already exists, find them and update their password
+      // If user already exists, find them and update password + metadata
       const isAlreadyExists =
         createError.message.toLowerCase().includes("already registered") ||
         createError.message.toLowerCase().includes("already exists") ||
@@ -66,7 +75,7 @@ export async function POST(request: NextRequest) {
 
       // Find the existing user by email
       const { data: listData, error: listError } = await supabase.auth.admin.listUsers({
-        page: 1,
+        page:    1,
         perPage: 1000,
       });
 
@@ -84,11 +93,14 @@ export async function POST(request: NextRequest) {
       }
 
       userId = existingUser.id;
-      const { error: updateError } = await supabase.auth.admin.updateUserById(userId, { password });
+      const { error: updateError } = await supabase.auth.admin.updateUserById(userId, {
+        password,
+        user_metadata: { full_name: full_name.trim() },
+      });
       if (updateError) {
-        console.error("Error updating password:", updateError);
+        console.error("Error updating user:", updateError);
         return NextResponse.json(
-          { error: `Error al actualizar la contraseña: ${updateError.message}` },
+          { error: `Error al actualizar la cuenta: ${updateError.message}` },
           { status: 500 }
         );
       }
@@ -99,14 +111,15 @@ export async function POST(request: NextRequest) {
       userId = newUser.user.id;
     }
 
-    // Grant access and store Stripe data
+    // Grant access and store Stripe data + full_name
     const { error: profileError } = await supabase
       .from("profiles")
       .upsert({
-        id: userId,
-        has_access: true,
+        id:                 userId,
+        full_name:          full_name.trim(),
+        has_access:         true,
         stripe_customer_id: customerId,
-        stripe_payment_id: paymentIntent,
+        stripe_payment_id:  paymentIntent,
       });
 
     if (profileError) {
@@ -117,7 +130,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    return NextResponse.json({ success: true, email });
+    return NextResponse.json({ success: true, email, user_id: userId });
   } catch (err) {
     console.error("Unexpected error in create-account:", err);
     return NextResponse.json(

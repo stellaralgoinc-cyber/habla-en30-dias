@@ -31,6 +31,10 @@ export async function POST(request: NextRequest) {
 
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
+    // NOTE (new flow): In the payment-first flow, the webhook may fire BEFORE the
+    // user account exists (account is created on /checkout/success after payment).
+    // The userId branch below is a no-op in that case since metadata.user_id is "".
+    // The create-account route is the authoritative place that grants has_access.
 
     if (session.payment_status !== "paid") {
       return NextResponse.json({ received: true });

@@ -3,7 +3,8 @@
 export const dynamic = "force-dynamic";
 
 import { useState, useEffect, Suspense } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -24,19 +25,21 @@ const onboardingSchema = z.object({
 type OnboardingForm = z.infer<typeof onboardingSchema>;
 
 function SuccessContent() {
-  const router        = useRouter();
   const searchParams  = useSearchParams();
   const sessionId     = searchParams.get("session_id") ?? "";
 
-  // step 0 = create password, step 1 = child info, step 2 = speech stage
-  const [step, setStep]                 = useState(0);
-  const [email, setEmail]               = useState("");
+  // step 0 = create account, step 1 = child info, step 2 = speech stage, step 3 = confirmation
+  const [step, setStep]                   = useState(0);
+  const [email, setEmail]                 = useState("");
+  const [userId, setUserId]               = useState("");
   const [isLoadingEmail, setLoadingEmail] = useState(true);
-  const [password, setPassword]         = useState("");
-  const [confirmPassword, setConfirm]   = useState("");
+  const [fullName, setFullName]           = useState("");
+  const [fullNameError, setFullNameError] = useState("");
+  const [password, setPassword]           = useState("");
+  const [confirmPassword, setConfirm]     = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [isCreating, setIsCreating]     = useState(false);
-  const [isSaving, setSaving]           = useState(false);
+  const [isCreating, setIsCreating]       = useState(false);
+  const [isSaving, setSaving]             = useState(false);
 
   const {
     register,
@@ -58,17 +61,18 @@ function SuccessContent() {
       return;
     }
 
-    // Check if user is already logged in (returning user who paid)
+    // Edge case: already-logged-in user revisiting (skip account creation step)
     const supabase = createClient();
     supabase.auth.getUser().then(async ({ data: { user } }) => {
       if (user?.email) {
         setEmail(user.email);
+        setUserId(user.id);
         setLoadingEmail(false);
-        setStep(1); // skip password step for logged-in users
+        setStep(1);
         return;
       }
 
-      // Guest checkout: fetch email from Stripe session
+      // Anonymous user: fetch email from Stripe session
       try {
         const res = await fetch(`/api/stripe/session?session_id=${sessionId}`);
         const data = await res.json() as { email?: string; error?: string };
@@ -87,8 +91,13 @@ function SuccessContent() {
 
   async function handleCreateAccount(e: React.FormEvent) {
     e.preventDefault();
+    setFullNameError("");
     setPasswordError("");
 
+    if (fullName.trim().length < 2) {
+      setFullNameError("Parece que faltó tu nombre completo 😊");
+      return;
+    }
     if (password.length < 8) {
       setPasswordError("La contraseña debe tener al menos 8 caracteres");
       return;
@@ -103,10 +112,14 @@ function SuccessContent() {
       const res = await fetch("/api/stripe/create-account", {
         method:  "POST",
         headers: { "Content-Type": "application/json" },
-        body:    JSON.stringify({ session_id: sessionId, password }),
+        body:    JSON.stringify({
+          session_id: sessionId,
+          password,
+          full_name:  fullName.trim(),
+        }),
       });
 
-      let data: { success?: boolean; email?: string; error?: string };
+      let data: { success?: boolean; email?: string; user_id?: string; error?: string };
       try {
         data = await res.json();
       } catch {
@@ -119,19 +132,11 @@ function SuccessContent() {
         return;
       }
 
-      // Sign in automatically
-      const supabase = createClient();
-      const { error: signInError } = await supabase.auth.signInWithPassword({
-        email:    email,
-        password: password,
-      });
-
-      if (signInError) {
-        toast.error("Cuenta creada. Por favor inicia sesión manualmente.");
-        router.push("/login");
-        return;
+      if (data.user_id) {
+        setUserId(data.user_id);
       }
 
+      // Do NOT auto-sign-in — user must verify email first
       setStep(1);
     } catch (err) {
       console.error("handleCreateAccount error:", err);
@@ -142,84 +147,47 @@ function SuccessContent() {
   }
 
   async function onSubmit(data: OnboardingForm) {
-    const supabase = createClient();
+    if (!userId) {
+      toast.error("Error de sesión. Por favor recarga la página.");
+      return;
+    }
+
     setSaving(true);
     try {
-      // Step 1: Get the authenticated user
-      const { data: { user }, error: userError } = await supabase.auth.getUser();
-      if (userError || !user) {
-        toast.error("Sesión expirada. Inicia sesión de nuevo.");
-        router.push("/login");
+      const res = await fetch("/api/onboarding", {
+        method:  "POST",
+        headers: { "Content-Type": "application/json" },
+        body:    JSON.stringify({
+          user_id:      userId,
+          child_name:   data.childName,
+          birth_date:   data.birthDate || null,
+          speech_stage: data.speechStage,
+        }),
+      });
+
+      let result: { success?: boolean; error?: string };
+      try {
+        result = await res.json();
+      } catch {
+        toast.error("Error del servidor. Por favor intenta de nuevo.");
         return;
       }
 
-      // Step 2: Ensure the profiles row exists before inserting child_profiles
-      // (child_profiles.user_id has a FK to profiles.id)
-      const { error: profileEnsureError } = await supabase
-        .from("profiles")
-        .upsert({ id: user.id, has_access: true }, { onConflict: "id" });
-
-      if (profileEnsureError) {
-        console.error("profiles upsert error:", profileEnsureError);
-        toast.error(`Error al verificar tu cuenta: ${profileEnsureError.message}`);
+      if (!result.success) {
+        toast.error(result.error ?? "No pudimos guardar el perfil. Intenta de nuevo.");
         return;
       }
 
-      // Step 3: Delete any existing child_profiles record to avoid conflicts
-      const { data: existing } = await supabase
-        .from("child_profiles")
-        .select("id")
-        .eq("user_id", user.id)
-        .maybeSingle();
-
-      if (existing) {
-        const { error: deleteError } = await supabase
-          .from("child_profiles")
-          .delete()
-          .eq("user_id", user.id);
-
-        if (deleteError) {
-          console.error("child_profiles delete error:", deleteError);
-          toast.error(`Error al limpiar perfil anterior: ${deleteError.message}`);
-          return;
-        }
-      }
-
-      // Step 4: Insert the new child profile
-      const { error: childError } = await supabase
-        .from("child_profiles")
-        .insert({
-          user_id:            user.id,
-          child_name:         data.childName,
-          birth_date:         data.birthDate || null,
-          speech_stage:       data.speechStage,
-          started_program_at: new Date().toISOString().split("T")[0],
-        });
-
-      if (childError) {
-        console.error("child_profiles insert error:", childError);
-        toast.error(`No pudimos guardar el perfil: ${childError.message}`);
-        return;
-      }
-
-      // Step 5: Mark onboarding as done
-      const { error: onboardingError } = await supabase
-        .from("profiles")
-        .update({ onboarding_done: true })
-        .eq("id", user.id);
-
-      if (onboardingError) {
-        console.error("onboarding_done update error:", onboardingError);
-      }
-
-      router.push("/inicio");
-      router.refresh();
+      setStep(3);
+    } catch (err) {
+      console.error("onSubmit error:", err);
+      toast.error("Error de conexión. Verifica tu internet e intenta de nuevo.");
     } finally {
       setSaving(false);
     }
   }
 
-  const totalSteps = 3;
+  const totalSteps = 4;
 
   if (isLoadingEmail) {
     return (
@@ -241,23 +209,21 @@ function SuccessContent() {
             <div
               key={i}
               className={`flex-1 h-1.5 rounded-full transition-all ${
-                i < step ? "bg-[var(--color-primary)]" :
-                i === step ? "bg-[var(--color-primary)]" :
-                "bg-[var(--color-border)]"
+                i <= step ? "bg-[var(--color-primary)]" : "bg-[var(--color-border)]"
               }`}
             />
           ))}
         </div>
 
-        {/* Step 0: Create password */}
+        {/* Step 0: Create account */}
         {step === 0 && (
           <>
             <div>
               <h1 className="font-display text-2xl font-bold text-[var(--color-text-primary)]">
-                ¡Pago exitoso! Crea tu contraseña
+                ¡Pago exitoso! Crea tu cuenta
               </h1>
               <p className="font-body text-[var(--color-text-secondary)] mt-1">
-                Necesitas una contraseña para acceder al programa.
+                Ya eres parte de la familia. Ahora crea tu acceso al programa.
               </p>
             </div>
             <Card elevated>
@@ -269,6 +235,13 @@ function SuccessContent() {
                       {email}
                     </p>
                   </div>
+                  <Input
+                    label="Tu nombre completo"
+                    placeholder="Andrea López"
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    error={fullNameError}
+                  />
                   <Input
                     label="Contraseña"
                     type="password"
@@ -386,6 +359,31 @@ function SuccessContent() {
                     </Button>
                   </div>
                 </form>
+              </CardContent>
+            </Card>
+          </>
+        )}
+
+        {/* Step 3: Confirmation — user must verify email before logging in */}
+        {step === 3 && (
+          <>
+            <div className="text-center space-y-2">
+              <h1 className="font-display text-2xl font-bold text-[var(--color-text-primary)]">
+                ¡Cuenta creada! 🎉
+              </h1>
+              <p className="font-body text-[var(--color-text-secondary)]">
+                Te enviamos un correo de confirmación a{" "}
+                <strong className="text-[var(--color-text-primary)]">{email}</strong>.
+                Haz clic en el enlace para activar tu cuenta.
+              </p>
+            </div>
+            <Card elevated>
+              <CardContent>
+                <Link href="/login">
+                  <Button fullWidth size="lg">
+                    Ir a iniciar sesión →
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           </>

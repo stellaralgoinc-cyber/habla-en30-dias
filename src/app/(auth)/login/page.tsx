@@ -170,10 +170,10 @@ function LoginForm() {
       <p className="text-center font-body text-sm text-[var(--color-text-secondary)]">
         ¿Aún no tienes cuenta?{" "}
         <Link
-          href="/registro"
+          href="/checkout"
           className="text-[var(--color-primary)] font-medium hover:underline"
         >
-          Regístrate aquí
+          Compra el programa aquí
         </Link>
       </p>
     </div>

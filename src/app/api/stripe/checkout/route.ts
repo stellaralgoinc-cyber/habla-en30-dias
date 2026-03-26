@@ -1,33 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { stripe, PRICE_CONFIG } from "@/lib/stripe";
-import { createClient } from "@/lib/supabase/server";
 
+// This route is intentionally anonymous — no auth check. Payment comes BEFORE
+// account creation in the new flow, so any visitor can initiate checkout.
 export async function POST(request: NextRequest) {
   try {
-    const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-
-    // Check if logged-in user already has access
-    if (user) {
-      const { data: profile } = await supabase
-        .from("profiles")
-        .select("has_access")
-        .eq("id", user.id)
-        .single();
-
-      if (profile?.has_access) {
-        return NextResponse.json(
-          { success: false, error: "Ya tienes acceso al programa." },
-          { status: 400 }
-        );
-      }
-    }
-
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       mode:                 "payment",
-      // If logged in, pre-fill email; otherwise Stripe collects it
-      ...(user?.email ? { customer_email: user.email } : {}),
       line_items: [
         {
           quantity: 1,
@@ -41,9 +21,6 @@ export async function POST(request: NextRequest) {
           },
         },
       ],
-      metadata: {
-        user_id: user?.id ?? "",
-      },
       success_url: `${request.nextUrl.origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url:  `${request.nextUrl.origin}/checkout`,
       locale:      "es",
