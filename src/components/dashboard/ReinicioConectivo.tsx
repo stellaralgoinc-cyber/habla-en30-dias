@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 const STEPS = [
   {
     step:   1,
+    
     icon:   Wind,
     titulo: "Pausa y respira",
     desc:   "Cierra los ojos por 10 segundos. Solo 10 segundos. Tú puedes.",

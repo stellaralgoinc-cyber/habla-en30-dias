@@ -16,7 +16,13 @@
       "Bash(git commit:*)",
       "Bash(git remote:*)",
       "Bash(git branch:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(ls:*)",
+      "Bash(find f:EbooksProjectshabla-en30-dias/src -name globals.css -o -name *.css)",
+      "Bash(ls -la \"f:\\\\Ebooks\\\\Projects\\\\habla-en30-dias/src/app/\\(auth\\)\")",
+      "Bash(ls -la \"f:\\\\Ebooks\\\\Projects\\\\habla-en30-dias/src/app/\\(auth\\)/login\")",
+      "Bash(ls -la \"f:\\\\Ebooks\\\\Projects\\\\habla-en30-dias/src/app/\\(auth\\)/registro\")",
+      "Bash(ls -la \"f:\\\\Ebooks\\\\Projects\\\\habla-en30-dias/src/app/\\(dashboard\\)/inicio\")"
     ]
   }
 }
