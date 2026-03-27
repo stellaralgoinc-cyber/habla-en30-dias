@@ -12,6 +12,7 @@ import { CelebrationOverlay } from "./CelebrationOverlay";
 import { ReinicioConectivoModal } from "./ReinicioConectivo";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+import { useWordLog } from "@/hooks/useWordLog";
 import type { DayContent, Mood } from "@/types/program.types";
 
 type Phase = "conexion" | "juego" | "cierre" | "done";
@@ -27,7 +28,7 @@ interface ActivityStepperProps {
     mood:       Mood;
     phaseTimes: Record<string, number>;
     bitacora:   { observedAdvance: string; connectionMoment?: string; parentFeeling?: string };
-  }) => Promise<void>;
+  }) => Promise<boolean>;
 }
 
 const PHASE_ORDER: Phase[] = ["conexion", "juego", "cierre", "done"];
@@ -75,6 +76,8 @@ function TimerButton({ minutes, onToggle, isRunning }: {
 }
 
 export function ActivityStepper({ dayContent, onComplete }: ActivityStepperProps) {
+  const { addWord, saving: savingWord } = useWordLog();
+
   const [phase, setPhase]           = useState<Phase>("conexion");
   const [stepIdx, setStepIdx]       = useState(0);
   const [timerRunning, setTimer]    = useState(false);
@@ -128,7 +131,7 @@ export function ActivityStepper({ dayContent, onComplete }: ActivityStepperProps
       return;
     }
     setSaving(true);
-    await onComplete({
+    const ok = await onComplete({
       checklist,
       mood,
       phaseTimes: {},
@@ -139,7 +142,7 @@ export function ActivityStepper({ dayContent, onComplete }: ActivityStepperProps
       },
     });
     setSaving(false);
-    setCelebrating(true);
+    if (ok) setCelebrating(true);
   }
 
 
@@ -410,11 +413,12 @@ export function ActivityStepper({ dayContent, onComplete }: ActivityStepperProps
                   <Button
                     size="sm"
                     variant="secondary"
-                    onClick={() => {
-                      if (wordInput.trim()) {
-                        toast.success(`"${wordInput}" anotado. ¡Cada sonido cuenta!`);
-                        setWordInput("");
-                      }
+                    disabled={savingWord || !wordInput.trim()}
+                    isLoading={savingWord}
+                    onClick={async () => {
+                      if (!wordInput.trim()) return;
+                      const ok = await addWord({ wordOrSound: wordInput.trim() });
+                      if (ok) setWordInput("");
                     }}
                   >
                     <Plus size={16} />

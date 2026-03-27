@@ -32,26 +32,26 @@ export default function DayPage({ params }: DayPageProps) {
     mood:       Mood;
     phaseTimes: Record<string, number>;
     bitacora:   { observedAdvance: string; connectionMoment?: string; parentFeeling?: string };
-  }) {
-    const [progressOk] = await Promise.all([
-      completeDay({
-        day:        dayNumber,
-        checklist:  params.checklist,
-        mood:       params.mood,
-        phaseTimes: params.phaseTimes,
-      }),
-      saveEntry({
-        dayNumber:        dayNumber,
-        observedAdvance:  params.bitacora.observedAdvance,
-        connectionMoment: params.bitacora.connectionMoment,
-        parentFeeling:    params.bitacora.parentFeeling,
-      }),
-    ]);
+  }): Promise<boolean> {
+    const progressOk = await completeDay({
+      day:        dayNumber,
+      checklist:  params.checklist,
+      mood:       params.mood,
+      phaseTimes: params.phaseTimes,
+    });
+    if (!progressOk) return false;
 
-    if (progressOk) {
-      // Redirect to inicio after a delay (celebration fires first in ActivityStepper)
-      setTimeout(() => router.push("/inicio"), 3500);
-    }
+    const bitacoraOk = await saveEntry({
+      dayNumber:        dayNumber,
+      observedAdvance:  params.bitacora.observedAdvance,
+      connectionMoment: params.bitacora.connectionMoment,
+      parentFeeling:    params.bitacora.parentFeeling,
+    });
+    if (!bitacoraOk) return false;
+
+    // Both saved — redirect after celebration finishes
+    setTimeout(() => router.push("/inicio"), 3500);
+    return true;
   }
 
   return (

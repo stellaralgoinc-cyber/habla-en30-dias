@@ -30,7 +30,9 @@
       "Bash(find /c/Users/lgma1/Desktop/30Dias/30-Dias-App -type f -name *.html)",
       "Bash(find /c/Users/lgma1/Desktop/30Dias/30-Dias-App -path *olvide-contrasena* -o -path *restablecer-contrasena*)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" https://habla-en30-dias.vercel.app/olvide-contrasena)",
-      "Bash(git config:*)"
+      "Bash(git config:*)",
+      "Bash(cat src/app/\\\\\\(auth\\\\\\)/registro/page.tsx)",
+      "Bash(head -20 src/app/\\\\\\(auth\\\\\\)/login/page.tsx)"
     ]
   }
 }
