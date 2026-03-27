@@ -9,7 +9,6 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Card, CardContent } from "@/components/ui/Card";
-import { createClient } from "@/lib/supabase/client";
 import { ArrowLeft, Mail } from "lucide-react";
 
 const schema = z.object({
@@ -22,7 +21,6 @@ export default function OlvideContrasenaPage() {
   const [sent, setSent] = useState(false);
   const [sentEmail, setSentEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const supabase = createClient();
 
   const {
     register,
@@ -33,12 +31,17 @@ export default function OlvideContrasenaPage() {
   async function onSubmit(data: FormData) {
     setIsLoading(true);
     try {
-      const { error } = await supabase.auth.resetPasswordForEmail(data.email, {
-        redirectTo: `${window.location.origin}/restablecer-contrasena`,
+      const res = await fetch("/api/auth/reset-password", {
+        method:  "POST",
+        headers: { "Content-Type": "application/json" },
+        body:    JSON.stringify({
+          email:      data.email,
+          redirectTo: `${window.location.origin}/restablecer-contrasena`,
+        }),
       });
 
-      if (error) {
-        toast.error("No pudimos enviar el correo. Verifica el correo e intenta de nuevo.");
+      if (!res.ok) {
+        toast.error("No pudimos enviar el correo. Intenta de nuevo.");
         return;
       }
 

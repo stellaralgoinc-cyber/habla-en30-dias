@@ -364,17 +364,17 @@ function SuccessContent() {
           </>
         )}
 
-        {/* Step 3: Confirmation — user must verify email before logging in */}
+        {/* Step 3: Confirmation — account is active, user can log in immediately */}
         {step === 3 && (
           <>
             <div className="text-center space-y-2">
               <h1 className="font-display text-2xl font-bold text-[var(--color-text-primary)]">
-                ¡Cuenta creada! 🎉
+                ¡Todo listo! 🎉
               </h1>
               <p className="font-body text-[var(--color-text-secondary)]">
-                Te enviamos un correo de confirmación a{" "}
+                Tu cuenta está activa. Inicia sesión para comenzar el programa.
+                También te enviamos un correo de bienvenida a{" "}
                 <strong className="text-[var(--color-text-primary)]">{email}</strong>.
-                Haz clic en el enlace para activar tu cuenta.
               </p>
             </div>
             <Card elevated>

@@ -22,7 +22,15 @@
       "Bash(ls -la \"f:\\\\Ebooks\\\\Projects\\\\habla-en30-dias/src/app/\\(auth\\)\")",
       "Bash(ls -la \"f:\\\\Ebooks\\\\Projects\\\\habla-en30-dias/src/app/\\(auth\\)/login\")",
       "Bash(ls -la \"f:\\\\Ebooks\\\\Projects\\\\habla-en30-dias/src/app/\\(auth\\)/registro\")",
-      "Bash(ls -la \"f:\\\\Ebooks\\\\Projects\\\\habla-en30-dias/src/app/\\(dashboard\\)/inicio\")"
+      "Bash(ls -la \"f:\\\\Ebooks\\\\Projects\\\\habla-en30-dias/src/app/\\(dashboard\\)/inicio\")",
+      "Bash(find /c/Users/lgma1/Desktop/30Dias/30-Dias-App -maxdepth 2 -name .env* -o -name supabase.json -o -name config.*)",
+      "Bash(find /c/Users/lgma1/Desktop/30Dias/30-Dias-App -name *auth* -o -name *edge*)",
+      "Bash(find /c/Users/lgma1/Desktop/30Dias/30-Dias-App -name *reset* -o -name *password*)",
+      "Bash(find /c/Users/lgma1/Desktop/30Dias/30-Dias-App -name *email* -o -name *template*)",
+      "Bash(find /c/Users/lgma1/Desktop/30Dias/30-Dias-App -type f -name *.html)",
+      "Bash(find /c/Users/lgma1/Desktop/30Dias/30-Dias-App -path *olvide-contrasena* -o -path *restablecer-contrasena*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" https://habla-en30-dias.vercel.app/olvide-contrasena)",
+      "Bash(git config:*)"
     ]
   }
 }

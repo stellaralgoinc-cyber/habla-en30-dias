@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
 import { createClient } from "@supabase/supabase-js";
+import { sendWelcomeEmail } from "@/lib/resend";
 
 export async function POST(request: NextRequest) {
   try {
@@ -50,11 +51,12 @@ export async function POST(request: NextRequest) {
 
     let userId: string;
 
-    // Try to create the user — email_confirm:false so Supabase sends a real confirmation email
+    // email_confirm:true — user already verified ownership via Stripe payment (paid with this email)
+    // Welcome email is sent via Resend API below, not through Supabase SMTP
     const { data: newUser, error: createError } = await supabase.auth.admin.createUser({
       email,
       password,
-      email_confirm: false,
+      email_confirm: true,
       user_metadata: { full_name: full_name.trim() },
     });
 
@@ -129,6 +131,11 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
+
+    // Send welcome email via Resend — fire-and-forget (don't block the response)
+    sendWelcomeEmail(email, full_name.trim()).catch((err) =>
+      console.error("sendWelcomeEmail error:", err)
+    );
 
     return NextResponse.json({ success: true, email, user_id: userId });
   } catch (err) {
