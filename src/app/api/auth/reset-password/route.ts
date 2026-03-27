@@ -13,9 +13,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Datos incompletos" }, { status: 400 });
     }
 
-    // Route through /auth/callback so Supabase PKCE code gets exchanged before landing on the reset page
+    // admin.generateLink uses implicit flow — tokens land in the URL hash (#)
+    // which is client-side only, so redirect directly to the page (not /auth/callback)
     const origin = new URL(clientRedirectTo).origin;
-    const redirectTo = `${origin}/auth/callback?next=/restablecer-contrasena`;
+    const redirectTo = `${origin}/restablecer-contrasena`;
 
     const supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
