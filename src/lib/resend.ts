@@ -3,7 +3,7 @@ import { Resend } from "resend";
 export const resend = new Resend(process.env.RESEND_API_KEY);
 
 // For testing: onboarding@resend.dev (Resend's shared sender)
-// Before launch: replace with a verified domain address e.g. hola@hablaen30dias.com
+// Before launch: set RESEND_FROM_EMAIL=hola@support.nova-library.com in Vercel once domain is verified
 const FROM = process.env.RESEND_FROM_EMAIL ?? "onboarding@resend.dev";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://habla-en30-dias.vercel.app";
 

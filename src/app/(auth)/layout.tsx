@@ -19,7 +19,7 @@ export default function AuthLayout({
       </main>
       <footer className="px-6 py-4 text-center">
         <p className="text-sm font-body text-[var(--color-muted)]">
-          © {new Date().getFullYear()} Habla en 30 Días. Con amor para las familias de LATAM.
+          © {new Date().getFullYear()} Habla en 30 Días. Con amor para las familias.
         </p>
       </footer>
     </div>

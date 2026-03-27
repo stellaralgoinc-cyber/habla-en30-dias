@@ -41,11 +41,15 @@ export default function RestablecerContrasenaPage() {
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
-  // Supabase delivers the recovery session via the URL hash fragment.
-  // The client SDK picks it up automatically on load.
   useEffect(() => {
+    // PKCE flow: session already exchanged by /auth/callback — check for existing session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) setIsReady(true);
+    });
+
+    // Implicit flow fallback: session arrives via URL hash
     const { data: listener } = supabase.auth.onAuthStateChange((event) => {
-      if (event === "PASSWORD_RECOVERY") {
+      if (event === "PASSWORD_RECOVERY" || event === "SIGNED_IN") {
         setIsReady(true);
       }
     });

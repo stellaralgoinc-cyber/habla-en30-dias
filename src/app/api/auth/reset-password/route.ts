@@ -4,14 +4,18 @@ import { sendPasswordResetEmail } from "@/lib/resend";
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, redirectTo } = await request.json() as {
+    const { email, redirectTo: clientRedirectTo } = await request.json() as {
       email:      string;
       redirectTo: string;
     };
 
-    if (!email || !redirectTo) {
+    if (!email || !clientRedirectTo) {
       return NextResponse.json({ error: "Datos incompletos" }, { status: 400 });
     }
+
+    // Route through /auth/callback so Supabase PKCE code gets exchanged before landing on the reset page
+    const origin = new URL(clientRedirectTo).origin;
+    const redirectTo = `${origin}/auth/callback?next=/restablecer-contrasena`;
 
     const supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
