@@ -93,18 +93,57 @@ export default function PerfilPage() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
 
-    const { error } = await supabase
+    // Step 1: Delete all day progress
+    const { error: progressError } = await supabase
+      .from("day_progress")
+      .delete()
+      .eq("user_id", user.id);
+
+    if (progressError) {
+      toast.error("No pudimos reiniciar el programa. Intenta de nuevo.");
+      console.error("Reset — day_progress delete error:", progressError);
+      return;
+    }
+
+    // Step 2: Delete all bitácora entries
+    const { error: bitacoraError } = await supabase
+      .from("bitacora_entries")
+      .delete()
+      .eq("user_id", user.id);
+
+    if (bitacoraError) {
+      toast.error("Error al limpiar la Bitácora. Intenta de nuevo.");
+      console.error("Reset — bitacora_entries delete error:", bitacoraError);
+      return;
+    }
+
+    // Step 3: Delete all achievements
+    const { error: achievementsError } = await supabase
+      .from("achievements")
+      .delete()
+      .eq("user_id", user.id);
+
+    if (achievementsError) {
+      toast.error("Error al reiniciar los logros. Intenta de nuevo.");
+      console.error("Reset — achievements delete error:", achievementsError);
+      return;
+    }
+
+    // Step 4: Reset the program start date
+    const { error: resetError } = await supabase
       .from("child_profiles")
       .update({ started_program_at: new Date().toISOString().split("T")[0] })
       .eq("user_id", user.id);
 
-    if (error) {
-      toast.error("No pudimos reiniciar el programa.");
+    if (resetError) {
+      toast.error("No pudimos reiniciar el programa. Intenta de nuevo.");
+      console.error("Reset — child_profiles update error:", resetError);
       return;
     }
 
-    toast.success("Programa reiniciado. ¡Nuevo comienzo, nueva oportunidad!");
+    toast.success("¡Programa reiniciado! Un nuevo comienzo para ti y tu hijo 🌱");
     setShowResetConfirm(false);
+    router.push("/inicio");
     router.refresh();
   }
 
@@ -193,7 +232,7 @@ export default function PerfilPage() {
         </CardHeader>
         <CardContent>
           <p className="font-body text-sm text-[var(--color-text-secondary)] mb-4">
-            Esto reiniciará el contador de días del programa. Tu Bitácora y registro de palabras se conservarán.
+            Esto borrará todo tu progreso: días completados, entradas de Bitácora y logros. Tu registro de palabras se conservará. Esta acción no se puede deshacer.
           </p>
           {!showResetConfirm ? (
             <Button
