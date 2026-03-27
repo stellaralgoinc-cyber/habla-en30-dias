@@ -10,7 +10,7 @@ import {
   TrendingUp,
   MoreHorizontal,
   Award,
-  BookMarked,
+  Library,
   User,
   LogOut,
   X,
@@ -25,97 +25,101 @@ const MAIN_NAV = [
   { href: "/progreso",   label: "Progreso", icon: TrendingUp },
 ] as const;
 
-const MORE_ITEMS = [
-  { href: "/logros",    label: "Logros",      icon: Award },
-  { href: "/capitulos", label: "Capítulos",   icon: BookMarked },
-  { href: "/perfil",    label: "Mi perfil",   icon: User },
+const DRAWER_ITEMS = [
+  { href: "/logros",    label: "Logros",     icon: Award },
+  { href: "/capitulos", label: "Capítulos",  icon: Library },
+  { href: "/perfil",    label: "Mi perfil",  icon: User },
 ] as const;
 
 export function BottomNav() {
-  const pathname  = usePathname();
-  const router    = useRouter();
+  const pathname = usePathname();
+  const router   = useRouter();
   const [open, setOpen] = useState(false);
 
-  const moreIsActive = MORE_ITEMS.some(
+  const moreIsActive = DRAWER_ITEMS.some(
     ({ href }) => pathname === href || pathname.startsWith(href + "/")
   );
 
+  function close() { setOpen(false); }
+
   async function handleSignOut() {
     const supabase = createClient();
+    close();
     await supabase.auth.signOut();
     router.push("/login");
   }
 
   return (
     <>
-      {/* Backdrop */}
-      {open && (
-        <div
-          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm md:hidden"
-          onClick={() => setOpen(false)}
-        />
-      )}
-
-      {/* Slide-up sheet */}
+      {/* Backdrop — always in DOM for smooth transition */}
       <div
         className={cn(
-          "fixed left-0 right-0 z-50 md:hidden",
-          "bg-[var(--color-surface)] rounded-t-3xl border-t border-[var(--color-border)]",
-          "transition-transform duration-300 ease-out pb-[env(safe-area-inset-bottom)]",
-          open ? "translate-y-0" : "translate-y-full",
-          // position just above bottom nav
-          "bottom-16"
+          "fixed inset-0 z-50 bg-black/40 md:hidden",
+          "transition-opacity duration-300",
+          open ? "opacity-100" : "opacity-0 pointer-events-none"
+        )}
+        onClick={close}
+      />
+
+      {/* Right-side drawer — always in DOM for smooth transition */}
+      <aside
+        className={cn(
+          "fixed top-0 right-0 h-full w-72 z-50 md:hidden",
+          "bg-[var(--color-surface)] flex flex-col",
+          "transition-transform duration-300 ease-in-out",
+          open ? "translate-x-0" : "translate-x-full"
         )}
       >
-        <div className="px-4 pt-3 pb-4">
-          <div className="flex items-center justify-between mb-4">
-            <span className="font-accent text-sm font-semibold text-[var(--color-text-secondary)]">
-              Más opciones
+        {/* Header */}
+        <div className="flex items-center justify-between px-6 py-6 border-b border-[var(--color-border)]">
+          <Link href="/inicio" onClick={close}>
+            <span className="font-display text-lg font-bold text-[var(--color-primary)] leading-tight">
+              Habla en 30 Días
             </span>
-            <button
-              onClick={() => setOpen(false)}
-              className="p-1 rounded-full text-[var(--color-muted)] hover:text-[var(--color-text-secondary)]"
-            >
-              <X size={18} />
-            </button>
-          </div>
-
-          <div className="space-y-1">
-            {MORE_ITEMS.map(({ href, label, icon: Icon }) => {
-              const isActive = pathname === href || pathname.startsWith(href + "/");
-              return (
-                <Link
-                  key={href}
-                  href={href}
-                  onClick={() => setOpen(false)}
-                  className={cn(
-                    "flex items-center gap-3 px-4 py-3 rounded-2xl transition-colors",
-                    isActive
-                      ? "bg-[var(--color-primary-light)] text-[var(--color-primary)]"
-                      : "text-[var(--color-text-secondary)] hover:bg-[var(--color-background)]"
-                  )}
-                >
-                  <Icon size={20} strokeWidth={isActive ? 2.5 : 1.8} />
-                  <span className={cn("font-body text-sm", isActive ? "font-semibold" : "font-medium")}>
-                    {label}
-                  </span>
-                </Link>
-              );
-            })}
-
-            {/* Divider */}
-            <div className="my-2 border-t border-[var(--color-border)]" />
-
-            <button
-              onClick={handleSignOut}
-              className="flex w-full items-center gap-3 px-4 py-3 rounded-2xl text-[var(--color-text-secondary)] hover:bg-[var(--color-background)] transition-colors"
-            >
-              <LogOut size={20} strokeWidth={1.8} />
-              <span className="font-body text-sm font-medium">Salir</span>
-            </button>
-          </div>
+          </Link>
+          <button
+            onClick={close}
+            className="p-1.5 rounded-full text-[var(--color-muted)] hover:text-[var(--color-text-secondary)] transition-colors"
+          >
+            <X size={20} />
+          </button>
         </div>
-      </div>
+
+        {/* Nav links */}
+        <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+          {DRAWER_ITEMS.map(({ href, label, icon: Icon }) => {
+            const isActive = pathname === href || pathname.startsWith(href + "/");
+            return (
+              <Link
+                key={href}
+                href={href}
+                onClick={close}
+                className={cn(
+                  "flex items-center gap-3 px-4 py-3 rounded-2xl font-accent text-sm font-medium",
+                  "transition-all duration-200",
+                  isActive
+                    ? "bg-[var(--color-primary-light)] text-[var(--color-primary)]"
+                    : "text-[var(--color-text-secondary)] hover:bg-[var(--color-background)] hover:text-[var(--color-text-primary)]"
+                )}
+              >
+                <Icon size={20} strokeWidth={isActive ? 2.5 : 1.8} className="shrink-0" />
+                {label}
+              </Link>
+            );
+          })}
+        </nav>
+
+        {/* Footer: Salir */}
+        <div className="px-3 pb-4 border-t border-[var(--color-border)] pt-4 pb-[calc(1rem+env(safe-area-inset-bottom))]">
+          <button
+            onClick={handleSignOut}
+            className="flex w-full items-center gap-3 px-4 py-3 rounded-2xl font-accent text-sm font-medium text-[var(--color-muted)] hover:bg-[var(--color-background)] hover:text-red-500 transition-all duration-200"
+          >
+            <LogOut size={18} strokeWidth={1.8} className="shrink-0" />
+            Salir
+          </button>
+        </div>
+      </aside>
 
       {/* Bottom nav bar */}
       <nav className="fixed bottom-0 left-0 right-0 z-40 bg-[var(--color-surface)] border-t border-[var(--color-border)] pb-[env(safe-area-inset-bottom)] md:hidden">
