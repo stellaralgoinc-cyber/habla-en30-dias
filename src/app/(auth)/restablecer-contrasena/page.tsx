@@ -42,18 +42,27 @@ export default function RestablecerContrasenaPage() {
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
   useEffect(() => {
-    // PKCE flow: session already exchanged by /auth/callback — check for existing session
+    // Implicit flow: admin.generateLink sends tokens in the URL hash (#access_token=...&type=recovery)
+    // @supabase/ssr uses cookies, so we must parse and set the session manually
+    if (window.location.hash) {
+      const params = new URLSearchParams(window.location.hash.substring(1));
+      const accessToken  = params.get("access_token");
+      const refreshToken = params.get("refresh_token");
+
+      if (accessToken && refreshToken) {
+        supabase.auth
+          .setSession({ access_token: accessToken, refresh_token: refreshToken })
+          .then(({ error }) => {
+            if (!error) setIsReady(true);
+          });
+        return;
+      }
+    }
+
+    // PKCE flow fallback: session already set in cookies by /auth/callback
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) setIsReady(true);
     });
-
-    // Implicit flow fallback: session arrives via URL hash
-    const { data: listener } = supabase.auth.onAuthStateChange((event) => {
-      if (event === "PASSWORD_RECOVERY" || event === "SIGNED_IN") {
-        setIsReady(true);
-      }
-    });
-    return () => listener.subscription.unsubscribe();
   }, [supabase]);
 
   async function onSubmit(data: FormData) {
