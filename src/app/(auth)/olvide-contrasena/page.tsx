@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+export const dynamic = "force-dynamic";
+
+import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -18,7 +20,7 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-export default function OlvideContrasenaPage() {
+function OlvideContrasenaContent() {
   const [sent, setSent] = useState(false);
   const [sentEmail, setSentEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -163,5 +165,13 @@ export default function OlvideContrasenaPage() {
         </Link>
       </div>
     </div>
+  );
+}
+
+export default function OlvideContrasenaPage() {
+  return (
+    <Suspense fallback={<div className="animate-pulse h-64 rounded-3xl bg-[var(--color-border)]" />}>
+      <OlvideContrasenaContent />
+    </Suspense>
   );
 }

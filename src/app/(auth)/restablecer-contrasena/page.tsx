@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+export const dynamic = "force-dynamic";
+
+import { useState, useEffect, Suspense } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -28,7 +30,7 @@ const schema = z
 
 type FormData = z.infer<typeof schema>;
 
-export default function RestablecerContrasenaPage() {
+function RestablecerContrasenaContent() {
   const router = useRouter();
   const supabase = createClient();
   const [isLoading, setIsLoading] = useState(false);
@@ -151,5 +153,13 @@ export default function RestablecerContrasenaPage() {
         </CardContent>
       </Card>
     </div>
+  );
+}
+
+export default function RestablecerContrasenaPage() {
+  return (
+    <Suspense fallback={<div className="animate-pulse h-64 rounded-3xl bg-[var(--color-border)]" />}>
+      <RestablecerContrasenaContent />
+    </Suspense>
   );
 }
