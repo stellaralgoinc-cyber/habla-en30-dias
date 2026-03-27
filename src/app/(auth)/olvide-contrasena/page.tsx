@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -21,6 +22,13 @@ export default function OlvideContrasenaPage() {
   const [sent, setSent] = useState(false);
   const [sentEmail, setSentEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    if (searchParams.get("error") === "link_expirado") {
+      toast.error("El enlace expiró. Solicita uno nuevo aquí.");
+    }
+  }, [searchParams]);
 
   const {
     register,
